@@ -15,7 +15,8 @@
 [![static analysis](https://github.com/yiisoft/mailer-symfony/workflows/static%20analysis/badge.svg)](https://github.com/yiisoft/mailer-symfony/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yiisoft/mailer-symfony/coverage.svg)](https://shepherd.dev/github/yiisoft/mailer-symfony)
 
-The package ...
+This package is a [yiisoft/mailer](https://github.com/yiisoft/mailer) library implementation
+that provides a [symfony/mailer](https://github.com/symfony/mailer) mail solution.
 
 ## Requirements
 
@@ -30,6 +31,74 @@ composer require yiisoft/mailer-symfony --prefer-dist
 ```
 
 ## General usage
+
+Creating a mailer:
+
+```php
+use Yiisoft\Mailer\MessageBodyRenderer;
+use Yiisoft\Mailer\MessageBodyTemplate;
+use Yiisoft\Mailer\MessageFactory;
+use Yiisoft\Mailer\Symfony\Mailer;
+use Yiisoft\Mailer\Symfony\Message;
+
+/**
+ * @var \Psr\EventDispatcher\EventDispatcherInterface $dispatcher
+ * @var \Symfony\Component\Mailer\Transport\TransportInterface $transport
+ * @var \Yiisoft\View\View $view
+ */
+
+$template = new MessageBodyTemplate('/path/to/directory/of/view-files');
+
+$mailer = new Mailer(
+    new MessageFactory(Message::class),
+    new MessageBodyRenderer($view, $template),
+    $dispatcher,
+    $transport,
+);
+```
+
+Sending a mail message:
+
+```php
+$message = $mailer->compose()
+    ->withFrom('from@domain.com')
+    ->withTo('to@domain.com')
+    ->withSubject('Message subject')
+    ->withTextBody('Plain text content')
+    ->withHtmlBody('<b>HTML content</b>')
+;
+$mailer->send($message);
+// Or several
+$mailer->sendMultiple([$message]);
+```
+
+Additional methods of the `Yiisoft\Mailer\Symfony\Mailer`:
+
+- `withEncryptor()` - Returns a new instance with the specified encryptor instance.
+- `withSigner()` - Returns a new instance with the specified signer instance.
+
+For more information about signing and encrypting messages, see the corresponding section of the
+[documentation](https://symfony.com/doc/current/mailer.html#signing-and-encrypting-messages).
+
+Additional methods of the `Yiisoft\Mailer\Symfony\Message`:
+
+- `getSymfonyEmail()` - Returns a Symfony email instance.
+- `getDate()` - Returns the date when the message was sent, or null if it was not set.
+- `withDate()` - Returns a new instance with the specified date when the message was sent.
+- `getPriority()` - Returns the priority of this message.
+- `withPriority()` - Returns a new instance with the specified priority of this message.
+- `getReturnPath()` - Returns the return-path (the bounce address) of this message.
+- `withReturnPath()` - Returns a new instance with the specified return-path (the bounce address) of this message.
+- `getSender()` - Returns the message actual sender email address.
+- `withSender()` - Returns a new instance with the specified actual sender email address.
+
+For use in the [Yii framework](http://www.yiiframework.com/), see the configuration files:
+
+- [`config/common.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/common.php)
+- [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
+
+See [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
+and [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html) for more info.
 
 ## Testing
 
