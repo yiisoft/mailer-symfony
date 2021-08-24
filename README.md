@@ -15,8 +15,8 @@
 [![static analysis](https://github.com/yiisoft/mailer-symfony/workflows/static%20analysis/badge.svg)](https://github.com/yiisoft/mailer-symfony/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yiisoft/mailer-symfony/coverage.svg)](https://shepherd.dev/github/yiisoft/mailer-symfony)
 
-This package is a [yiisoft/mailer](https://github.com/yiisoft/mailer) library implementation
-that provides a [symfony/mailer](https://github.com/symfony/mailer) mail solution.
+This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/mailer) relying on
+[symfony/mailer](https://github.com/symfony/mailer).
 
 ## Requirements
 
