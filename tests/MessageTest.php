@@ -468,6 +468,9 @@ final class MessageTest extends TestCase
     {
         $file = File::fromContent('Test attachment content', 'test.txt', 'text/plain');
 
+        $message = clone $this->message;
+        $this->assertNotSame($this->message->getSymfonyEmail(), $message->getSymfonyEmail());
+
         $this->assertNotSame($this->message, $this->message->withCharset('utf-8'));
         $this->assertNotSame($this->message, $this->message->withFrom('from@example.com'));
         $this->assertNotSame($this->message, $this->message->withTo('to@example.com'));
