@@ -80,17 +80,8 @@ Additional methods of the `Yiisoft\Mailer\Symfony\Mailer`:
 For more information about signing and encrypting messages, see the corresponding section of the
 [documentation](https://symfony.com/doc/current/mailer.html#signing-and-encrypting-messages).
 
-Additional methods of the `Yiisoft\Mailer\Symfony\Message`:
-
-- `getSymfonyEmail()` - Returns a Symfony email instance.
-- `getDate()` - Returns the date when the message was sent, or null if it was not set.
-- `withDate()` - Returns a new instance with the specified date when the message was sent.
-- `getPriority()` - Returns the priority of this message.
-- `withPriority()` - Returns a new instance with the specified priority of this message.
-- `getReturnPath()` - Returns the return-path (the bounce address) of this message.
-- `withReturnPath()` - Returns a new instance with the specified return-path (the bounce address) of this message.
-- `getSender()` - Returns the message actual sender email address.
-- `withSender()` - Returns a new instance with the specified actual sender email address.
+The `Yiisoft\Mailer\Symfony\Message` class provides a single `getSymfonyEmail()` method that returns
+a [Symfony Email](https://symfony.com/doc/current/mailer.html#creating-sending-messages) instance.
 
 For use in the [Yii framework](http://www.yiiframework.com/), see the configuration files:
 
