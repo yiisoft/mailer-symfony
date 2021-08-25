@@ -121,6 +121,56 @@ final class Message implements MessageInterface
         return $new;
     }
 
+    public function getDate(): ?DateTimeImmutable
+    {
+        return $this->email->getDate();
+    }
+
+    public function withDate(DateTimeInterface $date): self
+    {
+        $new = clone $this;
+        $new->email->date($date);
+        return $new;
+    }
+
+    public function getPriority(): int
+    {
+        return $this->email->getPriority();
+    }
+
+    public function withPriority(int $priority): self
+    {
+        $new = clone $this;
+        $new->email->priority($priority);
+        return $new;
+    }
+
+    public function getReturnPath(): string
+    {
+        $returnPath = $this->email->getReturnPath();
+        return $returnPath === null ? '' : $returnPath->getAddress();
+    }
+
+    public function withReturnPath(string $address): self
+    {
+        $new = clone $this;
+        $new->email->returnPath($address);
+        return $new;
+    }
+
+    public function getSender(): string
+    {
+        $sender = $this->email->getSender();
+        return $sender === null ? '' : $sender->getAddress();
+    }
+
+    public function withSender(string $address): self
+    {
+        $new = clone $this;
+        $new->email->sender($address);
+        return $new;
+    }
+
     public function getTextBody(): string
     {
         return (string) $this->email->getTextBody();
@@ -246,106 +296,6 @@ final class Message implements MessageInterface
     public function getSymfonyEmail(): Email
     {
         return $this->email;
-    }
-
-    /**
-     * Returns the date when the message was sent, or null if it was not set.
-     *
-     * @return DateTimeImmutable|null The date when the message was sent.
-     */
-    public function getDate(): ?DateTimeImmutable
-    {
-        return $this->email->getDate();
-    }
-
-    /**
-     * Returns a new instance with the specified date when the message was sent.
-     *
-     * @param DateTimeInterface $date The date when the message was sent.
-     *
-     * @return self
-     */
-    public function withDate(DateTimeInterface $date): self
-    {
-        $new = clone $this;
-        $new->email->date($date);
-        return $new;
-    }
-
-    /**
-     * Returns the priority of this message.
-     *
-     * @return int The priority value as integer in range: `1..5`,
-     * where 1 is the highest priority and 5 is the lowest.
-     */
-    public function getPriority(): int
-    {
-        return $this->email->getPriority();
-    }
-
-    /**
-     * Returns a new instance with the specified priority of this message.
-     *
-     * @param int $priority The priority value, should be an integer in range: `1..5`,
-     * where 1 is the highest priority and 5 is the lowest.
-     *
-     * @return self
-     */
-    public function withPriority(int $priority): self
-    {
-        $new = clone $this;
-        $new->email->priority($priority);
-        return $new;
-    }
-
-    /**
-     * Returns the return-path (the bounce address) of this message.
-     *
-     * @return string The bounce email address.
-     */
-    public function getReturnPath(): string
-    {
-        $returnPath = $this->email->getReturnPath();
-        return $returnPath === null ? '' : $returnPath->getAddress();
-    }
-
-    /**
-     * Returns a new instance with the specified return-path (the bounce address) of this message.
-     *
-     * @param string $address The bounce email address.
-     *
-     * @return self
-     */
-    public function withReturnPath(string $address): self
-    {
-        $new = clone $this;
-        $new->email->returnPath($address);
-        return $new;
-    }
-
-    /**
-     * Returns the message actual sender email address.
-     *
-     * @return string The actual sender email address.
-     */
-    public function getSender(): string
-    {
-        $sender = $this->email->getSender();
-        return $sender === null ? '' : $sender->getAddress();
-    }
-
-    /**
-     * Returns a new instance with the specified actual sender email address.
-     *
-     * @param string $address The actual sender email address.
-     *
-     * @return self
-     */
-    public function withSender(string $address): self
-    {
-        $new = clone $this;
-        $new->email->sender($address);
-        return $new;
     }
 
     /**
