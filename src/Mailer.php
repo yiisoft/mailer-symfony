@@ -71,7 +71,7 @@ final class Mailer extends BaseMailer
     /**
      * Returns a new instance with the specified signer.
      *
-     * @param DkimSigner|SMimeSigner|object $signer The signer instance.
+     * @param DkimSigner|object|SMimeSigner $signer The signer instance.
      * @param array $options The options for DKIM signer {@see DkimSigner}.
      *
      * @throws RuntimeException If the signer is not an instance of {@see DkimSigner} or {@see SMimeSigner}.

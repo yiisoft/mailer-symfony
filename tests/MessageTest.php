@@ -305,9 +305,9 @@ final class MessageTest extends TestCase
         $this->assertStringContainsString("Return-Path: <$returnPath>", $string, 'Incorrect "Return-Path" header!');
         $this->assertStringContainsString("Sender: $sender", $string, 'Incorrect "Sender" header!');
         $this->assertStringContainsString($text, $string, 'Incorrect "Text" body!');
-        $this->assertStringContainsString("Content-Type: text/plain", $string, 'Incorrect "Text" content type!');
+        $this->assertStringContainsString('Content-Type: text/plain', $string, 'Incorrect "Text" content type!');
         $this->assertStringContainsString($html, $string, 'Incorrect "Html" body!');
-        $this->assertStringContainsString("Content-Type: text/html", $string, 'Incorrect "Html" content type!');
+        $this->assertStringContainsString('Content-Type: text/html', $string, 'Incorrect "Html" content type!');
     }
 
     public function testHeadersAndToString(): void

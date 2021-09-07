@@ -63,7 +63,8 @@ final class MailerTest extends TestCase
         $this->expectException(TransportExceptionInterface::class);
         $this->expectExceptionMessage('Subject is required.');
 
-        $mailer->send((new Message())
+        $mailer->send(
+            (new Message())
             ->withFrom('from@example.com')
             ->withTo('to@example.com')
             ->withTextBody('Test Body')

@@ -303,7 +303,7 @@ final class Message implements MessageInterface
      *
      * @param Address[] $addresses
      *
-     * @return string|array<string, string>
+     * @return array<string, string>|string
      */
     private function convertAddressesToStrings(array $addresses)
     {
@@ -319,7 +319,7 @@ final class Message implements MessageInterface
     /**
      * Converts string representations of address to their instances.
      *
-     * @param string|array<int|string, string> $strings
+     * @param array<int|string, string>|string $strings
      *
      * @return Address[]
      */
