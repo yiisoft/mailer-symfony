@@ -28,6 +28,9 @@
             "url": "https://github.com/sponsors/yiisoft"
         }
     ],
+    "suggest": {
+        "ext-openssl": "Needed for use SMimeSigner"
+    },
     "require": {
         "php": "^7.4|^8.0",
         "symfony/mailer": "^5.3",
@@ -44,12 +47,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yiisoft\\Mailer\\Symfony\\": "src"
+            "Yiisoft\\Mailer\\Symfony\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yiisoft\\Mailer\\Symfony\\Tests\\": "tests"
+            "Yiisoft\\Mailer\\Symfony\\Tests\\": "tests/"
         }
     },
     "extra": {
