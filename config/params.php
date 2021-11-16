@@ -15,11 +15,12 @@ return [
     ],
     'symfony/mailer' => [
         'esmtpTransport' => [
+            'scheme' => 'smtps', // "smtps": using TLS, "smtp": without using TLS.
             'host' => 'smtp.example.com',
             'port' => 465,
-            'tls' => true,
             'username' => 'admin@example.com',
             'password' => '',
+            'options' => [], // See: https://symfony.com/doc/current/mailer.html#tls-peer-verification
         ],
     ],
 ];
