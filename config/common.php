@@ -41,8 +41,8 @@ return [
 
     TransportInterface::class => $params['yiisoft/mailer']['useSendmail']
         ? SendmailTransport::class
-        : static function () use ($params): TransportInterface {
-            return (new EsmtpTransportFactory())->create(new Dsn(
+        : static function (EsmtpTransportFactory $esmtpTransportFactory) use ($params): TransportInterface {
+            return $esmtpTransportFactory->create(new Dsn(
                 $params['symfony/mailer']['esmtpTransport']['scheme'],
                 $params['symfony/mailer']['esmtpTransport']['host'],
                 $params['symfony/mailer']['esmtpTransport']['username'],
