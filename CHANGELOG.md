@@ -1,5 +1,9 @@
 # Yii Mailer Library - Symfony Mailer Extension Change Log
 
+## 1.0.2 under development
+
+- no changes in this release.
+
 ## 1.0.1 November 22, 2021
 
 - Enh #6: Improve the configuration for passing additional options to `EsmtpTransport` instance (devanych)
