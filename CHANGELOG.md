@@ -2,7 +2,7 @@
 
 ## 1.0.2 under development
 
-- no changes in this release.
+- Enh #7: Add support for version `^6.0` for `symfony/mailer` package (devanych)
 
 ## 1.0.1 November 22, 2021
 

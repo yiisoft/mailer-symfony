@@ -30,7 +30,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "symfony/mailer": "^5.3",
+        "symfony/mailer": "^5.3|^6.0",
         "yiisoft/mailer": "^3.0"
     },
     "require-dev": {
