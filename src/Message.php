@@ -240,7 +240,9 @@ final class Message implements MessageInterface
     public function withAddedHeader(string $name, string $value): self
     {
         $new = clone $this;
-        $new->email->getHeaders()->addTextHeader($name, $value);
+        $new->email
+            ->getHeaders()
+            ->addTextHeader($name, $value);
         return $new;
     }
 

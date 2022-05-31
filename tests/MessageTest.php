@@ -157,7 +157,9 @@ final class MessageTest extends TestCase
         $this->assertNotSame($message, $this->message);
         $this->assertNotSame($date, $message->getDate());
         $this->assertInstanceOf(DateTimeImmutable::class, $message->getDate());
-        $this->assertSame($date->getTimestamp(), $message->getDate()->getTimestamp());
+        $this->assertSame($date->getTimestamp(), $message
+            ->getDate()
+            ->getTimestamp());
     }
 
     public function priorityDataProvider(): array
@@ -244,7 +246,9 @@ final class MessageTest extends TestCase
     {
         $date = new DateTimeImmutable();
         $sender = 'sender@example.com';
-        $message = $this->message->withDate($date)->withSender($sender);
+        $message = $this->message
+            ->withDate($date)
+            ->withSender($sender);
 
         $this->assertNotSame($message, $this->message);
         $this->assertSame([$sender], $message->getHeader('sEndEr'));
@@ -494,7 +498,9 @@ final class MessageTest extends TestCase
 
     private function assertAttachment(Message $message, File $file, bool $checkContent): void
     {
-        $attachment = $message->getSymfonyEmail()->getAttachments()[0];
+        $attachment = $message
+            ->getSymfonyEmail()
+            ->getAttachments()[0];
 
         $this->assertInstanceOf(DataPart::class, $attachment);
 

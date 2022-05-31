@@ -65,9 +65,9 @@ final class MailerTest extends TestCase
 
         $mailer->send(
             (new Message())
-            ->withFrom('from@example.com')
-            ->withTo('to@example.com')
-            ->withTextBody('Test Body')
+                ->withFrom('from@example.com')
+                ->withTo('to@example.com')
+                ->withTextBody('Test Body')
         );
     }
 
@@ -103,53 +103,76 @@ final class MailerTest extends TestCase
 
     public function testSendWithDkimSigner(): void
     {
-        $mailer = $this->get(MailerInterface::class)->withSigner(new DkimSigner(
-            file_get_contents("$this->keyPath/sign.key"),
-            'example.com',
-            'default',
-        ));
+        $mailer = $this
+            ->get(MailerInterface::class)
+            ->withSigner(new DkimSigner(
+                file_get_contents("$this->keyPath/sign.key"),
+                'example.com',
+                'default',
+            ));
 
         $this->assertNotSame($this->get(MailerInterface::class), $mailer);
 
         $mailer->send($this->message);
-        $sentMessage = $this->get(TransportInterface::class)->getSentMessages()[0];
+        $sentMessage = $this
+            ->get(TransportInterface::class)
+            ->getSentMessages()[0];
 
         $this->assertNotSame($this->message->getSymfonyEmail(), $sentMessage);
         $this->assertInstanceOf(SymfonyMessage::class, $sentMessage);
-        $this->assertTrue($sentMessage->getHeaders()->has('DKIM-Signature'));
-        $this->assertSame($this->message->getTextBody(), $sentMessage->getBody()->bodyToString());
+        $this->assertTrue($sentMessage
+            ->getHeaders()
+            ->has('DKIM-Signature'));
+        $this->assertSame($this->message->getTextBody(), $sentMessage
+            ->getBody()
+            ->bodyToString());
     }
 
     public function testSendWithSMimeSigner(): void
     {
-        $mailer = $this->get(MailerInterface::class)->withSigner(new SMimeSigner(
-            "$this->keyPath/sign.crt",
-            "$this->keyPath/sign.key",
-        ));
+        $mailer = $this
+            ->get(MailerInterface::class)
+            ->withSigner(new SMimeSigner(
+                "$this->keyPath/sign.crt",
+                "$this->keyPath/sign.key",
+            ));
 
         $this->assertNotSame($this->get(MailerInterface::class), $mailer);
 
         $mailer->send($this->message);
-        $sentMessage = $this->get(TransportInterface::class)->getSentMessages()[0];
+        $sentMessage = $this
+            ->get(TransportInterface::class)
+            ->getSentMessages()[0];
 
         $this->assertNotSame($this->message->getSymfonyEmail(), $sentMessage);
         $this->assertInstanceOf(SymfonyMessage::class, $sentMessage);
-        $this->assertStringContainsString('S/MIME', $sentMessage->getBody()->bodyToString());
-        $this->assertStringContainsString($this->message->getTextBody(), $sentMessage->getBody()->bodyToString());
+        $this->assertStringContainsString('S/MIME', $sentMessage
+            ->getBody()
+            ->bodyToString());
+        $this->assertStringContainsString($this->message->getTextBody(), $sentMessage
+            ->getBody()
+            ->bodyToString());
     }
 
     public function testSendWithEncryptor(): void
     {
-        $mailer = $this->get(MailerInterface::class)->withEncryptor(new SMimeEncrypter(
-            "$this->keyPath/encrypt.crt",
-        ));
+        $mailer = $this
+            ->get(MailerInterface::class)
+            ->withEncryptor(new SMimeEncrypter(
+                "$this->keyPath/encrypt.crt",
+            ));
 
         $this->assertNotSame($this->get(MailerInterface::class), $mailer);
 
-        $this->message->getSymfonyEmail()->getHeaders()->addIdHeader('Message-ID', 'some-id@example.com');
+        $this->message
+            ->getSymfonyEmail()
+            ->getHeaders()
+            ->addIdHeader('Message-ID', 'some-id@example.com');
 
         $mailer->send($this->message);
-        $sentMessage = $this->get(TransportInterface::class)->getSentMessages()[0];
+        $sentMessage = $this
+            ->get(TransportInterface::class)
+            ->getSentMessages()[0];
 
         $this->assertNotSame($this->message->getSymfonyEmail(), $sentMessage);
         $this->assertInstanceOf(SymfonyMessage::class, $sentMessage);
@@ -158,7 +181,8 @@ final class MailerTest extends TestCase
 
     public function testSendWithEncryptorAndWithSigner(): void
     {
-        $mailer = $this->get(MailerInterface::class)
+        $mailer = $this
+            ->get(MailerInterface::class)
             ->withEncryptor(new SMimeEncrypter("$this->keyPath/encrypt.crt"))
             ->withSigner(new DkimSigner(
                 file_get_contents("$this->keyPath/sign.key"),
@@ -169,15 +193,22 @@ final class MailerTest extends TestCase
 
         $this->assertNotSame($this->get(MailerInterface::class), $mailer);
 
-        $this->message->getSymfonyEmail()->getHeaders()->addIdHeader('Message-ID', 'some-id@example.com');
+        $this->message
+            ->getSymfonyEmail()
+            ->getHeaders()
+            ->addIdHeader('Message-ID', 'some-id@example.com');
 
         $mailer->send($this->message);
-        $sentMessage = $this->get(TransportInterface::class)->getSentMessages()[0];
+        $sentMessage = $this
+            ->get(TransportInterface::class)
+            ->getSentMessages()[0];
 
         $this->assertSentMessageIsEncryptedProperly($sentMessage);
         $this->assertNotSame($this->message->getSymfonyEmail(), $sentMessage);
         $this->assertInstanceOf(SymfonyMessage::class, $sentMessage);
-        $this->assertTrue($sentMessage->getHeaders()->has('DKIM-Signature'));
+        $this->assertTrue($sentMessage
+            ->getHeaders()
+            ->has('DKIM-Signature'));
     }
 
     private function assertSentMessageIsEncryptedProperly(SymfonyMessage $sentMessage): void
