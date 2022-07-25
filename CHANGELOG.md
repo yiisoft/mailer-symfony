@@ -2,7 +2,7 @@
 
 ## 1.0.2 under development
 
-- Chg #13: Update the `yiisoft/mailer` dependency, added `^4.0` (@thenotsoft)
+- Chg #13: Update the `yiisoft/mailer` dependency, up to `^4.0` (@thenotsoft)
 - Enh #7: Add support for version `^6.0` for `symfony/mailer` package (devanych)
 
 ## 1.0.1 November 22, 2021
