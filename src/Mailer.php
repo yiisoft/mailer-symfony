@@ -30,10 +30,7 @@ final class Mailer extends BaseMailer
     private SymfonyMailer $symfonyMailer;
     private ?SMimeEncrypter $encryptor = null;
 
-    /**
-     * @var DkimSigner|SMimeSigner|null
-     */
-    private $signer = null;
+    private null|\Symfony\Component\Mime\Crypto\DkimSigner|\Symfony\Component\Mime\Crypto\SMimeSigner $signer = null;
     private array $dkimSignerOptions = [];
 
     /**
@@ -58,8 +55,6 @@ final class Mailer extends BaseMailer
      * @param SMimeEncrypter $encryptor The encryptor instance.
      *
      * @see https://symfony.com/doc/current/mailer.html#encrypting-messages
-     *
-     * @return self
      */
     public function withEncryptor(SMimeEncrypter $encryptor): self
     {
@@ -77,8 +72,6 @@ final class Mailer extends BaseMailer
      * @throws RuntimeException If the signer is not an instance of {@see DkimSigner} or {@see SMimeSigner}.
      *
      * @see https://symfony.com/doc/current/mailer.html#signing-messages
-     *
-     * @return self
      */
     public function withSigner(object $signer, array $options = []): self
     {
@@ -99,7 +92,7 @@ final class Mailer extends BaseMailer
             'The signer must be an instance of "%s" or "%s". The "%s" instance is received.',
             DkimSigner::class,
             SMimeSigner::class,
-            get_class($signer),
+            $signer::class,
         ));
     }
 
@@ -114,7 +107,7 @@ final class Mailer extends BaseMailer
             throw new RuntimeException(sprintf(
                 'The message must be an instance of "%s". The "%s" instance is received.',
                 Message::class,
-                get_class($message),
+                $message::class,
             ));
         }
 

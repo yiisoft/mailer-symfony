@@ -80,7 +80,7 @@ final class MailerTest extends TestCase
         $this->expectExceptionMessage(sprintf(
             'The message must be an instance of "%s". The "%s" instance is received.',
             Message::class,
-            get_class($mock),
+            $mock::class,
         ));
 
         $mailer->send($mock);

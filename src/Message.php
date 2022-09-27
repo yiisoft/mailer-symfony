@@ -21,7 +21,7 @@ use function is_string;
  * @see https://symfony.com/doc/current/mailer.html#creating-sending-messages
  * @see Mailer
  */
-final class Message implements MessageInterface
+final class Message implements MessageInterface, \Stringable
 {
     private Email $email;
     private ?Throwable $error = null;
@@ -307,7 +307,7 @@ final class Message implements MessageInterface
      *
      * @return array<string, string>|string
      */
-    private function convertAddressesToStrings(array $addresses)
+    private function convertAddressesToStrings(array $addresses): array|string
     {
         $strings = [];
 
@@ -325,7 +325,7 @@ final class Message implements MessageInterface
      *
      * @return Address[]
      */
-    private function convertStringsToAddresses($strings): array
+    private function convertStringsToAddresses(array|string $strings): array
     {
         if (is_string($strings)) {
             return [new Address($strings)];
