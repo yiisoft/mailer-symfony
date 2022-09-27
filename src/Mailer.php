@@ -17,7 +17,6 @@ use Yiisoft\Mailer\MessageBodyRenderer;
 use Yiisoft\Mailer\MessageFactoryInterface;
 use Yiisoft\Mailer\MessageInterface;
 
-use function get_class;
 use function sprintf;
 
 /**

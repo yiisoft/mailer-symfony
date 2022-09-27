@@ -19,7 +19,6 @@ use Yiisoft\Mailer\Symfony\Message;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
-use function get_class;
 use function openssl_pkcs7_decrypt;
 use function sprintf;
 use function str_replace;
