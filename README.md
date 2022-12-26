@@ -20,7 +20,7 @@ This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/maile
 
 ## Requirements
 
-- PHP 7.4 or higher.
+- PHP 8.0 or higher.
 
 ## Installation
 
