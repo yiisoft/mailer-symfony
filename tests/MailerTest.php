@@ -19,7 +19,6 @@ use Yiisoft\Mailer\Symfony\Message;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
-use function get_class;
 use function openssl_pkcs7_decrypt;
 use function sprintf;
 use function str_replace;
@@ -80,7 +79,7 @@ final class MailerTest extends TestCase
         $this->expectExceptionMessage(sprintf(
             'The message must be an instance of "%s". The "%s" instance is received.',
             Message::class,
-            get_class($mock),
+            $mock::class,
         ));
 
         $mailer->send($mock);
