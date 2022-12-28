@@ -30,7 +30,9 @@
     ],
     "require": {
         "php": "^8.0",
+        "psr/event-dispatcher": "^1.0",
         "symfony/mailer": "^5.3|^6.0",
+        "symfony/mime": "^5.4|^6.2",
         "yiisoft/mailer": "^4.0"
     },
     "require-dev": {
