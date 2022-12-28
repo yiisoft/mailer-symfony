@@ -46,8 +46,6 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider charsetDataProvider
-     *
-     * @param string $charset
      */
     public function testCharset(string $charset): void
     {
@@ -81,11 +79,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider addressesDataProvider
-     *
-     * @param array|string $from
-     * @param array $expected
      */
-    public function testFrom($from, array $expected): void
+    public function testFrom(array|string $from, array $expected): void
     {
         $message = $this->message->withFrom($from);
 
@@ -95,11 +90,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider addressesDataProvider
-     *
-     * @param array|string $to
-     * @param array $expected
      */
-    public function testTo($to, array $expected): void
+    public function testTo(array|string $to, array $expected): void
     {
         $message = $this->message->withTo($to);
 
@@ -109,11 +101,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider addressesDataProvider
-     *
-     * @param array|string $replyTo
-     * @param array $expected
      */
-    public function testReplyTo($replyTo, array $expected): void
+    public function testReplyTo(array|string $replyTo, array $expected): void
     {
         $message = $this->message->withReplyTo($replyTo);
 
@@ -123,11 +112,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider addressesDataProvider
-     *
-     * @param array|string $cc
-     * @param array $expected
      */
-    public function testCc($cc, array $expected): void
+    public function testCc(array|string $cc, array $expected): void
     {
         $message = $this->message->withCc($cc);
 
@@ -137,11 +123,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider addressesDataProvider
-     *
-     * @param array|string $bcc
-     * @param array $expected
      */
-    public function testBcc($bcc, array $expected): void
+    public function testBcc(array|string $bcc, array $expected): void
     {
         $message = $this->message->withBcc($bcc);
 
@@ -175,8 +158,6 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider priorityDataProvider
-     *
-     * @param int $priority
      */
     public function testPriority(int $priority): void
     {
@@ -214,12 +195,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider headerDataProvider
-     *
-     * @param string $name
-     * @param array|string $value
-     * @param array $expected
      */
-    public function testHeader(string $name, $value, array $expected): void
+    public function testHeader(string $name, array|string $value, array $expected): void
     {
         $message = $this->message->withHeader($name, $value);
 
@@ -229,12 +206,8 @@ final class MessageTest extends TestCase
 
     /**
      * @dataProvider headerDataProvider
-     *
-     * @param string $name
-     * @param array|string $value
-     * @param array $expected
      */
-    public function testHeaders(string $name, $value, array $expected): void
+    public function testHeaders(string $name, array|string $value, array $expected): void
     {
         $message = $this->message->withHeaders([$name => $value]);
 
