@@ -29,7 +29,7 @@ final class Mailer extends BaseMailer
     private SymfonyMailer $symfonyMailer;
     private ?SMimeEncrypter $encryptor = null;
 
-    private null|\Symfony\Component\Mime\Crypto\DkimSigner|\Symfony\Component\Mime\Crypto\SMimeSigner $signer = null;
+    private null|DkimSigner|SMimeSigner $signer = null;
     private array $dkimSignerOptions = [];
 
     /**

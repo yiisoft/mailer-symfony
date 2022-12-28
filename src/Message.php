@@ -6,6 +6,7 @@ namespace Yiisoft\Mailer\Symfony;
 
 use DateTimeImmutable;
 use DateTimeInterface;
+use Stringable;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Header\HeaderInterface;
@@ -21,7 +22,7 @@ use function is_string;
  * @see https://symfony.com/doc/current/mailer.html#creating-sending-messages
  * @see Mailer
  */
-final class Message implements MessageInterface, \Stringable
+final class Message implements MessageInterface, Stringable
 {
     private Email $email;
     private ?Throwable $error = null;

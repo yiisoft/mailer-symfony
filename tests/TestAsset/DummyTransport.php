@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yiisoft\Mailer\Symfony\Tests\TestAsset;
 
+use Stringable;
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Transport\TransportInterface;
@@ -11,7 +12,7 @@ use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\RawMessage;
 
-final class DummyTransport implements TransportInterface, \Stringable
+final class DummyTransport implements TransportInterface, Stringable
 {
     /**
      * @var RawMessage[]
