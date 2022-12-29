@@ -50,7 +50,7 @@ final class Message implements MessageInterface, Stringable
         return $new;
     }
 
-    public function getFrom()
+    public function getFrom(): array|string
     {
         return $this->convertAddressesToStrings($this->email->getFrom());
     }
@@ -62,7 +62,7 @@ final class Message implements MessageInterface, Stringable
         return $new;
     }
 
-    public function getTo()
+    public function getTo(): array|string
     {
         return $this->convertAddressesToStrings($this->email->getTo());
     }
@@ -74,7 +74,7 @@ final class Message implements MessageInterface, Stringable
         return $new;
     }
 
-    public function getReplyTo()
+    public function getReplyTo(): array|string
     {
         return $this->convertAddressesToStrings($this->email->getReplyTo());
     }
@@ -86,7 +86,7 @@ final class Message implements MessageInterface, Stringable
         return $new;
     }
 
-    public function getCc()
+    public function getCc(): array|string
     {
         return $this->convertAddressesToStrings($this->email->getCc());
     }
@@ -98,7 +98,7 @@ final class Message implements MessageInterface, Stringable
         return $new;
     }
 
-    public function getBcc()
+    public function getBcc(): array|string
     {
         return $this->convertAddressesToStrings($this->email->getBcc());
     }

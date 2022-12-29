@@ -3,6 +3,8 @@
 ## 2.1.0 under development
 
 - Chg #24: Raise minimal PHP version to `^8.0` (@vjik)
+- Chg #25: Raise `yiisoft/mailer` version to `^5.0`, `MessageInterface` adapt to it (@vjik)
+- Enh #18: Explicitly add transitive dependencies `psr/event-dispatcher` and `symfony/mime` (@vjik)
 
 ## 2.0.0 July 25, 2022
 
