@@ -1,5 +1,9 @@
 # Yii Mailer Library - Symfony Mailer Extension Change Log
 
+## 2.1.1 under development
+
+- no changes in this release.
+
 ## 2.1.0 January 02, 2023
 
 - Chg #24: Raise minimal PHP version to `^8.0` (@vjik)
