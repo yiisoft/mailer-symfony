@@ -51,7 +51,7 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
                             [
                                 'resources' => __DIR__ . '/environment/resources',
                                 'runtime' => __DIR__ . '/environment/runtime',
-                            ]
+                            ],
                         ],
                     ],
                 ]
