@@ -42,7 +42,7 @@
         "roave/infection-static-analysis-plugin": "^1.25",
         "spatie/phpunit-watcher": "^1.23",
         "vimeo/psalm": "^4.30|^5.4",
-        "yiisoft/aliases": "^2.0",
+        "yiisoft/aliases": "^3.0",
         "yiisoft/di": "^1.2",
         "yiisoft/files": "^2.0",
         "yiisoft/psr-dummy-provider": "^1.0",

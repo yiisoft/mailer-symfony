@@ -27,7 +27,7 @@ This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/maile
 The package could be installed with composer:
 
 ```shell
-composer require yiisoft/mailer-symfony --prefer-dist
+composer require yiisoft/mailer-symfony
 ```
 
 ## General usage
