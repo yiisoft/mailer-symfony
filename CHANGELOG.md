@@ -1,5 +1,9 @@
 # Yii Mailer Library - Symfony Mailer Extension Change Log
 
+## 3.0.1 under development
+
+- no changes in this release.
+
 ## 3.0.0 February 16, 2023
 
 - Chg #27: Adapt configuration group names to Yii conventions (@vjik)
