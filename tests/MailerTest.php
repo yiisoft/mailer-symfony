@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yiisoft\Mailer\Symfony\Tests;
 
+use DateTimeImmutable;
 use RuntimeException;
 use stdClass;
 use Symfony\Component\Mailer\Transport\TransportInterface;
@@ -166,6 +167,7 @@ final class MailerTest extends TestCase
         $this->message
             ->getSymfonyEmail()
             ->getHeaders()
+            ->addDateHeader('Date', new DateTimeImmutable())
             ->addIdHeader('Message-ID', 'some-id@example.com');
 
         $mailer->send($this->message);
@@ -195,6 +197,7 @@ final class MailerTest extends TestCase
         $this->message
             ->getSymfonyEmail()
             ->getHeaders()
+            ->addDateHeader('Date', new DateTimeImmutable())
             ->addIdHeader('Message-ID', 'some-id@example.com');
 
         $mailer->send($this->message);
