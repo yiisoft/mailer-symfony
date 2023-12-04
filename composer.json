@@ -32,7 +32,7 @@
         "php": "^8.0",
         "psr/event-dispatcher": "^1.0",
         "symfony/mailer": "^5.3|^6.0",
-        "symfony/mime": "^5.4|^6.2",
+        "symfony/mime": "^7.0.0",
         "yiisoft/mailer": "^5.0"
     },
     "require-dev": {
