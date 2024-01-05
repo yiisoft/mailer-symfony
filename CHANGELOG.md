@@ -2,7 +2,7 @@
 
 ## 3.0.1 under development
 
-- no changes in this release.
+- Enh #41: Add support for `symfony/mailer` of version ^7.0 (@vjik)
 
 ## 3.0.0 February 16, 2023
 
