@@ -24,7 +24,7 @@ This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/maile
 
 ## Installation
 
-The package could be installed with composer:
+The package could be installed with [Composer](https://getcomposer.org):
 
 ```shell
 composer require yiisoft/mailer-symfony
@@ -84,40 +84,13 @@ For more information about signing and encrypting messages, see the correspondin
 The `Yiisoft\Mailer\Symfony\Message` class provides a single `getSymfonyEmail()` method that returns
 a [Symfony Email](https://symfony.com/doc/current/mailer.html#creating-sending-messages) instance.
 
-For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
+## Documentation
 
-- [`config/common.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/common.php)
-- [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
-
-See [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
+- For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
+  - [`config/common.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/common.php)
+  - [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
+- See [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
 and [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html) for more info.
-
-## Testing
-
-### Unit testing
-
-The package is tested with [PHPUnit](https://phpunit.de/). To run tests:
-
-```shell
-./vendor/bin/phpunit
-```
-
-### Mutation testing
-
-The package tests are checked with [Infection](https://infection.github.io/) mutation framework with
-[Infection Static Analysis Plugin](https://github.com/Roave/infection-static-analysis-plugin). To run it:
-
-```shell
-./vendor/bin/roave-infection-static-analysis-plugin
-```
-
-### Static analysis
-
-The code is statically analyzed with [Psalm](https://psalm.dev/). To run static analysis:
-
-```shell
-./vendor/bin/psalm
-```
 
 ## License
 
