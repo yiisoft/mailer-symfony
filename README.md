@@ -84,13 +84,15 @@ For more information about signing and encrypting messages, see the correspondin
 The `Yiisoft\Mailer\Symfony\Message` class provides a single `getSymfonyEmail()` method that returns
 a [Symfony Email](https://symfony.com/doc/current/mailer.html#creating-sending-messages) instance.
 
+For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
+  - [`config/di.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/di.php)
+  - [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
+
 ## Documentation
 
-- For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
-  - [`config/common.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/common.php)
-  - [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
-- See [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
-and [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html) for more info.
+- [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
+- [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html)
+- [Internals](docs/internals.md)
 
 ## License
 
