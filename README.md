@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px">
+        <img src="https://yiisoft.github.io/docs/images/yii_logo.svg" height="100px" alt="Yii">
     </a>
     <h1 align="center">Yii Mailer Library - Symfony Mailer Extension</h1>
     <br>
@@ -24,7 +24,7 @@ This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/maile
 
 ## Installation
 
-The package could be installed with [Composer](https://getcomposer.org):
+The package could be installed with composer:
 
 ```shell
 composer require yiisoft/mailer-symfony
@@ -84,19 +84,21 @@ For more information about signing and encrypting messages, see the correspondin
 The `Yiisoft\Mailer\Symfony\Message` class provides a single `getSymfonyEmail()` method that returns
 a [Symfony Email](https://symfony.com/doc/current/mailer.html#creating-sending-messages) instance.
 
-For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
-  - [`config/di.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/di.php)
-  - [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
-
 ## Documentation
 
-- [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
-- [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html)
+- See [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
+and [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html) for more info.
+- For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
+  - [`config/di.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/di.php)
+  - [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
 - [Internals](docs/internals.md)
+
+If you need help or have a question, the [Yii Forum](https://forum.yiiframework.com/c/yii-3-0/63) is a good place for that.
+You may also check out other [Yii Community Resources](https://www.yiiframework.com/community).
 
 ## License
 
-The Yii Framework Symfony Mailer Extension is free software. It is released under the terms of the BSD License.
+The Yii Mailer Library - Symfony Mailer Extension is free software. It is released under the terms of the BSD License.
 Please see [`LICENSE`](./LICENSE.md) for more information.
 
 Maintained by [Yii Software](https://www.yiiframework.com/).
