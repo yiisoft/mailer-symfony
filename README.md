@@ -24,7 +24,7 @@ This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/maile
 
 ## Installation
 
-The package could be installed with composer:
+The package could be installed with [Composer](https://getcomposer.org):
 
 ```shell
 composer require yiisoft/mailer-symfony
@@ -86,8 +86,8 @@ a [Symfony Email](https://symfony.com/doc/current/mailer.html#creating-sending-m
 
 ## Documentation
 
-- See [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
-and [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html) for more info.
+- [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
+- [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html)
 - For use in the [Yii framework](https://www.yiiframework.com/), see the configuration files:
   - [`config/di.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/di.php)
   - [`config/params.php`](https://github.com/yiisoft/mailer-symfony/blob/master/config/params.php)
