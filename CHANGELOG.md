@@ -1,5 +1,9 @@
 # Yii Mailer Library - Symfony Mailer Extension Change Log
 
+## 3.0.2 under development
+
+- no changes in this release.
+
 ## 3.0.1 May 24, 2024
 
 - Enh #39: Add support for `symfony/mime` of version ^7.0 (@vjik)
