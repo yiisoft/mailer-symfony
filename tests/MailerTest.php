@@ -16,7 +16,6 @@ use Symfony\Component\Mime\Crypto\SMimeSigner;
 use Symfony\Component\Mime\Message as SymfonyMessage;
 use Yiisoft\Mailer\MailerInterface;
 use Yiisoft\Mailer\Message;
-use Yiisoft\Mailer\MessageInterface;
 
 use function file_exists;
 use function file_get_contents;
