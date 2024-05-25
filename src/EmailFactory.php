@@ -45,16 +45,11 @@ final class EmailFactory
         $emailHeaders = $email->getHeaders();
         foreach ($message->getHeaders() as $name => $values) {
             foreach ($values as $value) {
-                switch ($name) {
-                    case 'Date':
-                        $emailHeaders->addDateHeader($name, new DateTimeImmutable($value));
-                        break;
-                    case 'Message-ID':
-                        $emailHeaders->addIdHeader($name, $value);
-                        break;
-                    default:
-                        $emailHeaders->addTextHeader($name, $value);
-                }
+                match ($name) {
+                    'Date' => $emailHeaders->addDateHeader($name, new DateTimeImmutable($value)),
+                    'Message-ID' => $emailHeaders->addIdHeader($name, $value),
+                    default => $emailHeaders->addTextHeader($name, $value),
+                };
             }
         }
 
