@@ -40,7 +40,6 @@ final class EmailFactory
         return $email;
     }
 
-
     /**
      * Converts address instances to their string representations.
      *
