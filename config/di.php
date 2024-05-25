@@ -11,12 +11,12 @@ use Yiisoft\Definitions\Reference;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
+use Yiisoft\Mailer\Message;
 use Yiisoft\Mailer\MessageBodyRenderer;
 use Yiisoft\Mailer\MessageBodyTemplate;
 use Yiisoft\Mailer\MessageFactory;
 use Yiisoft\Mailer\MessageFactoryInterface;
 use Yiisoft\Mailer\Symfony\Mailer;
-use Yiisoft\Mailer\Symfony\Message;
 use Yiisoft\View\View;
 
 /** @var array $params */

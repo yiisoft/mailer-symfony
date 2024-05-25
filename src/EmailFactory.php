@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yiisoft\Mailer\Symfony;
 
+use DateTimeImmutable;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Yiisoft\Mailer\MessageInterface;
@@ -23,19 +24,51 @@ final class EmailFactory
             ->bcc(...$this->convertStringsToAddresses($message->getBcc()))
             ->subject($message->getSubject())
             ->priority($message->getPriority())
-            ->returnPath($message->getReturnPath())
-            ->sender($message->getSender())
             ->text($message->getTextBody(), $message->getCharset())
             ->html($message->getHtmlBody(), $message->getCharset());
+
+        $returnPath = $message->getReturnPath();
+        if ($returnPath !== '') {
+            $email->returnPath($returnPath);
+        }
+
+        $sender = $message->getSender();
+        if ($sender !== '') {
+            $email->sender($sender);
+        }
 
         $date = $message->getDate();
         if ($date !== null) {
             $email->date($date);
         }
 
-        // headers
-        // attachments
-        // embedded
+        $emailHeaders = $email->getHeaders();
+        foreach ($message->getHeaders() as $name => $values) {
+            foreach ($values as $value) {
+                switch ($name) {
+                    case 'Date':
+                        $emailHeaders->addDateHeader($name, new DateTimeImmutable($value));
+                        break;
+                    case 'Message-ID':
+                        $emailHeaders->addIdHeader($name, $value);
+                        break;
+                    default:
+                        $emailHeaders->addTextHeader($name, $value);
+                }
+            }
+        }
+
+        foreach ($message->getAttachments() as $file) {
+            $file->path() === null
+                ? $email->attach((string) $file->content(), $file->name(), $file->contentType())
+                : $email->attachFromPath($file->path(), $file->name(), $file->contentType());
+        }
+
+        foreach ($message->getEmbeddedFiles() as $file) {
+            $file->path() === null
+                ? $email->embed((string) $file->content(), $file->name(), $file->contentType())
+                : $email->embedFromPath($file->path(), $file->name(), $file->contentType());
+        }
 
         return $email;
     }
