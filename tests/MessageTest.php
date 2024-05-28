@@ -7,6 +7,7 @@ namespace Yiisoft\Mailer\Symfony\Tests;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use RuntimeException;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\DataPart;
@@ -39,14 +40,12 @@ final class MessageTest extends TestCase
         $this->assertSame($subject, $message->getSubject());
     }
 
-    public function charsetDataProvider(): array
+    public static function charsetDataProvider(): array
     {
         return [['utf-8'], ['iso-8859-2']];
     }
 
-    /**
-     * @dataProvider charsetDataProvider
-     */
+    #[DataProvider('charsetDataProvider')]
     public function testCharset(string $charset): void
     {
         $message = $this->message->withCharset($charset);
@@ -55,7 +54,7 @@ final class MessageTest extends TestCase
         $this->assertSame($charset, $message->getCharset());
     }
 
-    public function addressesDataProvider(): array
+    public static function addressesDataProvider(): array
     {
         return [
             [
@@ -77,9 +76,7 @@ final class MessageTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider addressesDataProvider
-     */
+    #[DataProvider('addressesDataProvider')]
     public function testFrom(array|string $from, array $expected): void
     {
         $message = $this->message->withFrom($from);
@@ -88,9 +85,7 @@ final class MessageTest extends TestCase
         $this->assertSame($expected, $message->getFrom());
     }
 
-    /**
-     * @dataProvider addressesDataProvider
-     */
+    #[DataProvider('addressesDataProvider')]
     public function testTo(array|string $to, array $expected): void
     {
         $message = $this->message->withTo($to);
@@ -99,9 +94,7 @@ final class MessageTest extends TestCase
         $this->assertSame($expected, $message->getTo());
     }
 
-    /**
-     * @dataProvider addressesDataProvider
-     */
+    #[DataProvider('addressesDataProvider')]
     public function testReplyTo(array|string $replyTo, array $expected): void
     {
         $message = $this->message->withReplyTo($replyTo);
@@ -110,9 +103,7 @@ final class MessageTest extends TestCase
         $this->assertSame($expected, $message->getReplyTo());
     }
 
-    /**
-     * @dataProvider addressesDataProvider
-     */
+    #[DataProvider('addressesDataProvider')]
     public function testCc(array|string $cc, array $expected): void
     {
         $message = $this->message->withCc($cc);
@@ -121,9 +112,7 @@ final class MessageTest extends TestCase
         $this->assertSame($expected, $message->getCc());
     }
 
-    /**
-     * @dataProvider addressesDataProvider
-     */
+    #[DataProvider('addressesDataProvider')]
     public function testBcc(array|string $bcc, array $expected): void
     {
         $message = $this->message->withBcc($bcc);
@@ -145,7 +134,7 @@ final class MessageTest extends TestCase
             ->getTimestamp());
     }
 
-    public function priorityDataProvider(): array
+    public static function priorityDataProvider(): array
     {
         return [
             [Email::PRIORITY_HIGHEST],
@@ -156,9 +145,7 @@ final class MessageTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider priorityDataProvider
-     */
+    #[DataProvider('priorityDataProvider')]
     public function testPriority(int $priority): void
     {
         $message = $this->message->withPriority($priority);
@@ -185,7 +172,7 @@ final class MessageTest extends TestCase
         $this->assertSame($address, $message->getSender());
     }
 
-    public function headerDataProvider(): array
+    public static function headerDataProvider(): array
     {
         return [
             ['X-Foo', 'Bar', ['Bar']],
@@ -193,9 +180,7 @@ final class MessageTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider headerDataProvider
-     */
+    #[DataProvider('headerDataProvider')]
     public function testHeader(string $name, array|string $value, array $expected): void
     {
         $message = $this->message->withHeader($name, $value);
@@ -204,9 +189,7 @@ final class MessageTest extends TestCase
         $this->assertSame($expected, $message->getHeader($name));
     }
 
-    /**
-     * @dataProvider headerDataProvider
-     */
+    #[DataProvider('headerDataProvider')]
     public function testHeaders(string $name, array|string $value, array $expected): void
     {
         $message = $this->message->withHeaders([$name => $value]);
