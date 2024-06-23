@@ -7,15 +7,25 @@ namespace Yiisoft\Mailer\Symfony\Tests;
 use DateTimeImmutable;
 use RuntimeException;
 use stdClass;
+use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Crypto\DkimSigner;
 use Symfony\Component\Mime\Crypto\SMimeEncrypter;
 use Symfony\Component\Mime\Crypto\SMimeSigner;
 use Symfony\Component\Mime\Message as SymfonyMessage;
+use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\MailerInterface;
+use Yiisoft\Mailer\MessageBodyRenderer;
+use Yiisoft\Mailer\MessageBodyTemplate;
+use Yiisoft\Mailer\MessageFactory;
 use Yiisoft\Mailer\MessageInterface;
+use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\Mailer\Symfony\Message;
+
+use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
+
+use Yiisoft\View\View;
 
 use function file_exists;
 use function file_get_contents;
@@ -241,5 +251,28 @@ final class MailerTest extends TestCase
         if (file_exists($decryptedFile)) {
             unlink($decryptedFile);
         }
+    }
+
+    public function testXxx(): void
+    {
+        $mailer = new Mailer(
+            new MessageFactory(Message::class),
+            new MessageBodyRenderer(
+                new View('', new SimpleEventDispatcher()),
+                new MessageBodyTemplate('', '', ''),
+            ),
+            new SimpleEventDispatcher(),
+            new EsmtpTransport('127.0.0.1', 8000)
+        );
+
+        $mailer->send(
+            (new Message())
+                ->withFrom('from@example.com')
+                ->withTo('to@example.com')
+                ->withTextBody('Test Body')
+                ->withAttached(
+                    File::fromPath(__DIR__ . '/test.txt')
+                )
+        );
     }
 }
