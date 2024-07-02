@@ -47,7 +47,7 @@
         "yiisoft/files": "^2.0",
         "yiisoft/psr-dummy-provider": "^1.0",
         "yiisoft/test-support": "^3.0",
-        "yiisoft/view": "^8.0"
+        "yiisoft/view": "^10.0"
     },
     "autoload": {
         "psr-4": {
