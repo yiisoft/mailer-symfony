@@ -3,7 +3,7 @@
 ## 3.1.0 under development
 
 - Chg #50: Raise minimal PHP version to `^8.1` (@vjik)
-- Bug #56: Fix don't usage of file ID for attachments and embedded files (@vjik) 
+- Bug #56: Use file ID for attachments and embedded files (@vjik)
 
 ## 3.0.1 May 24, 2024
 
