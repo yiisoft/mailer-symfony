@@ -10,6 +10,8 @@ use Stringable;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Header\HeaderInterface;
+use Symfony\Component\Mime\Part\DataPart;
+use Symfony\Component\Mime\Part\File as SymfonyFile;
 use Throwable;
 use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\MessageInterface;
@@ -199,25 +201,34 @@ final class Message implements MessageInterface, Stringable
     public function withAttached(File $file): self
     {
         $new = clone $this;
-
-        $file->path() === null
-            ? $new->email->attach((string) $file->content(), $file->name(), $file->contentType())
-            : $new->email->attachFromPath($file->path(), $file->name(), $file->contentType())
-        ;
-
+        $new->email->addPart(
+            $this->createDataPartFromFile($file)
+        );
         return $new;
     }
 
     public function withEmbedded(File $file): self
     {
         $new = clone $this;
-
-        $file->path() === null
-            ? $new->email->embed((string) $file->content(), $file->name(), $file->contentType())
-            : $new->email->embedFromPath($file->path(), $file->name(), $file->contentType())
-        ;
-
+        $new->email->addPart(
+            $this->createDataPartFromFile($file)->asInline()
+        );
         return $new;
+    }
+
+    /**
+     * @see Email::attach()
+     * @see Email::attachFromPath()
+     * @see Email::embed()
+     * @see Email::embedFromPath()
+     */
+    private function createDataPartFromFile(File $file): DataPart
+    {
+        $body = $file->path() === null
+            ? $file->content() ?? ''
+            : new SymfonyFile($file->path(), $file->name());
+        return (new DataPart($body, $file->name(), $file->contentType()))
+            ->setContentId($file->id());
     }
 
     public function getHeader(string $name): array
