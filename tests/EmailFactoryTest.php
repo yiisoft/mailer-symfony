@@ -17,7 +17,7 @@ final class EmailFactoryTest extends \PHPUnit\Framework\TestCase
             from: 'yii@example.com',
             to: ['mark@example.com', 'vasya@example.com'],
             replyTo: 'den@example.com',
-            cc: 'boss@example.com',
+            cc: ['boss@example.com' => 'Big Boss'],
             bcc: 'kate@example.com',
             subject: 'Important letter',
             date: new DateTimeImmutable('2024-09-27 11:03:17'),
@@ -48,7 +48,7 @@ final class EmailFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(1, $email->getReplyTo());
         $this->assertSame('den@example.com', $email->getReplyTo()[0]->toString());
         $this->assertCount(1, $email->getCc());
-        $this->assertSame('boss@example.com', $email->getCc()[0]->toString());
+        $this->assertSame('"Big Boss" <boss@example.com>', $email->getCc()[0]->toString());
         $this->assertCount(1, $email->getBcc());
         $this->assertSame('kate@example.com', $email->getBcc()[0]->toString());
         $this->assertSame('Important letter', $email->getSubject());
@@ -63,5 +63,10 @@ final class EmailFactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('X-Test: new', $headers);
         $this->assertContains('X-Test: tourist', $headers);
         $this->assertContains('X-Spam: 0', $headers);
+
+        $attachments = $email->getAttachments();
+        $this->assertCount(2, $attachments);
+        $this->assertSame('yii.txt', $attachments[0]->getFilename());
+        $this->assertSame('yii.png', $attachments[1]->getFilename());
     }
 }
