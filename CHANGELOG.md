@@ -1,9 +1,10 @@
 # Yii Mailer Library - Symfony Mailer Extension Change Log
 
-## 3.1.0 under development
+## 4.0.0 under development
 
 - Chg #50: Raise minimal PHP version to `^8.1` (@vjik)
 - Bug #56: Use file ID for attachments and embedded files (@vjik)
+- Chg #49: Adapt to Yii Mailer 6, remove `Message` class (@vjik) 
 
 ## 3.0.1 May 24, 2024
 
