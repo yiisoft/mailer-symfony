@@ -137,7 +137,7 @@ final class MailerTest extends TestCase
             ->bodyToString());
     }
 
-    public function testSendWithEncryptor(): void
+    public function testSendWithEncryptor1(): void
     {
         $mailer = $this
             ->get(MailerInterface::class)
@@ -269,11 +269,6 @@ final class MailerTest extends TestCase
             ),
             sprintf('Decryption of the message failed. Internal error "%s".', openssl_error_string()),
         );
-
-//        $this->assertEquals(
-//            str_replace("\r", '', (string) $this->message),
-//            str_replace("\r", '', file_get_contents($decryptedFile)),
-//        );
 
         if (file_exists($encryptedFile)) {
             unlink($encryptedFile);
