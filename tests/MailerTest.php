@@ -6,6 +6,7 @@ namespace Yiisoft\Mailer\Symfony\Tests;
 
 use DateTimeImmutable;
 use DateTimeInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use RuntimeException;
 use stdClass;
 use Symfony\Component\Mailer\Transport\TransportInterface;
@@ -14,8 +15,12 @@ use Symfony\Component\Mime\Crypto\DkimSigner;
 use Symfony\Component\Mime\Crypto\SMimeEncrypter;
 use Symfony\Component\Mime\Crypto\SMimeSigner;
 use Symfony\Component\Mime\Message as SymfonyMessage;
+use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\MailerInterface;
-use Yiisoft\Mailer\Message;
+use Yiisoft\Mailer\MessageInterface;
+use Yiisoft\Mailer\Symfony\Mailer;
+use Yiisoft\Mailer\Symfony\Message;
+use Yiisoft\Mailer\Symfony\Tests\TestAsset\DummyTransport;
 
 use function file_exists;
 use function file_get_contents;
@@ -185,6 +190,70 @@ final class MailerTest extends TestCase
         $this->assertTrue($sentMessage
             ->getHeaders()
             ->has('DKIM-Signature'));
+    }
+
+    public static function dataSendWithEmbedded(): iterable
+    {
+        yield [File::fromContent(file_get_contents(__DIR__ . '/TestAsset/yii.png'), 'yii-logo.png', 'image/png')];
+        yield [File::fromPath(__DIR__ . '/TestAsset/yii.png', 'yii-logo.png', 'image/png')];
+    }
+
+    #[DataProvider('dataSendWithEmbedded')]
+    public function testSendWithEmbedded(File $file): void
+    {
+        $html = '<img src="' . $file->cid() . '" alt="Yii logo">';
+
+        $message = (new Message())
+            ->withFrom('from@example.com')
+            ->withTo('to@example.com')
+            ->withSubject('Test Subject')
+            ->withHtmlBody($html)
+            ->withEmbedded($file);
+
+        /** @var Mailer $mailer */
+        $mailer = $this->get(MailerInterface::class);
+        $mailer->send($message);
+
+        /** @var DummyTransport $transport */
+        $transport = $this->get(TransportInterface::class);
+        $sentMessage = $transport->getSentMessages()[0]->toString();
+
+        $this->assertStringContainsStringIgnoringLineEndings(
+            "Content-Disposition: inline; name=\"{$file->id()}\";\r\n filename=yii-logo.png",
+            $sentMessage
+        );
+        $this->assertStringContainsStringIgnoringLineEndings('Content-ID: <' . $file->id() . '>', $sentMessage);
+    }
+
+    public static function dataSendWithAttached(): iterable
+    {
+        yield [File::fromContent(file_get_contents(__DIR__ . '/TestAsset/yii.png'), 'yii-logo.png', 'image/png')];
+        yield [File::fromPath(__DIR__ . '/TestAsset/yii.png', 'yii-logo.png', 'image/png')];
+    }
+
+    #[DataProvider('dataSendWithAttached')]
+    public function testSendWithAttached(File $file): void
+    {
+        $message = (new Message())
+            ->withFrom('from@example.com')
+            ->withTo('to@example.com')
+            ->withSubject('Test Subject')
+            ->withTextBody('test')
+            ->withAttached($file);
+
+        /** @var Mailer $mailer */
+        $mailer = $this->get(MailerInterface::class);
+        $mailer->send($message);
+
+        /** @var DummyTransport $transport */
+        $transport = $this->get(TransportInterface::class);
+        $sentMessage = $transport->getSentMessages()[0]->toString();
+
+        $this->assertStringContainsStringIgnoringLineEndings(
+            'Content-Disposition: attachment; name=yii-logo.png; filename=yii-logo.png',
+            $sentMessage
+        );
+        $this->assertStringContainsStringIgnoringLineEndings('Content-ID: <' . $file->id() . '>', $sentMessage);
     }
 
     private function assertSentMessageIsEncryptedProperly(SymfonyMessage $sentMessage): void

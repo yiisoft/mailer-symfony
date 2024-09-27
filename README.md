@@ -6,11 +6,10 @@
     <br>
 </p>
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/mailer-symfony/v/stable.png)](https://packagist.org/packages/yiisoft/mailer-symfony)
-[![Total Downloads](https://poser.pugx.org/yiisoft/mailer-symfony/downloads.png)](https://packagist.org/packages/yiisoft/mailer-symfony)
-[![Build status](https://github.com/yiisoft/mailer-symfony/workflows/build/badge.svg)](https://github.com/yiisoft/mailer-symfony/actions?query=workflow%3Abuild)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/mailer-symfony/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/mailer-symfony/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/yiisoft/mailer-symfony/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/mailer-symfony/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/yiisoft/mailer-symfony/v)](https://packagist.org/packages/yiisoft/mailer-symfony)
+[![Total Downloads](https://poser.pugx.org/yiisoft/mailer-symfony/downloads)](https://packagist.org/packages/yiisoft/mailer-symfony)
+[![Build status](https://github.com/yiisoft/mailer-symfony/actions/workflows/build.yml/badge.svg)](https://github.com/yiisoft/mailer-symfony/actions/workflows/build.yml)
+[![Code Coverage](https://codecov.io/gh/yiisoft/mailer-symfony/graph/badge.svg?token=5QIVH0fbPD)](https://codecov.io/gh/yiisoft/mailer-symfony)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyiisoft%2Fmailer-symfony%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/yiisoft/mailer-symfony/master)
 [![static analysis](https://github.com/yiisoft/mailer-symfony/workflows/static%20analysis/badge.svg)](https://github.com/yiisoft/mailer-symfony/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yiisoft/mailer-symfony/coverage.svg)](https://shepherd.dev/github/yiisoft/mailer-symfony)
@@ -20,7 +19,7 @@ This package is an adapter for [yiisoft/mailer](https://github.com/yiisoft/maile
 
 ## Requirements
 
-- PHP 8.0 or higher.
+- PHP 8.1 or higher.
 
 ## Installation
 
