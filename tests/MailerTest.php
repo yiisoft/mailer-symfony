@@ -17,9 +17,9 @@ use Symfony\Component\Mime\Crypto\SMimeSigner;
 use Symfony\Component\Mime\Message as SymfonyMessage;
 use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\MailerInterface;
+use Yiisoft\Mailer\Message;
 use Yiisoft\Mailer\MessageInterface;
 use Yiisoft\Mailer\Symfony\Mailer;
-use Yiisoft\Mailer\Symfony\Message;
 use Yiisoft\Mailer\Symfony\Tests\TestAsset\DummyTransport;
 
 use function file_exists;
@@ -27,7 +27,6 @@ use function file_get_contents;
 use function file_put_contents;
 use function openssl_pkcs7_decrypt;
 use function sprintf;
-use function str_replace;
 use function stream_get_meta_data;
 use function tmpfile;
 use function unlink;
