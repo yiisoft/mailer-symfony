@@ -7,7 +7,12 @@ namespace Yiisoft\Mailer\Symfony;
 use DateTimeImmutable;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Part\DataPart;
+use Symfony\Component\Mime\Part\File as SymfonyFile;
+use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\MessageInterface;
+
+use function is_string;
 
 /**
  * @internal
@@ -54,36 +59,33 @@ final class EmailFactory
         }
 
         foreach ($message->getAttachments() as $file) {
-            $file->path() === null
-                ? $email->attach((string) $file->content(), $file->name(), $file->contentType())
-                : $email->attachFromPath($file->path(), $file->name(), $file->contentType());
+            $email->addPart(
+                $this->createDataPartFromFile($file)
+            );
         }
 
-        foreach ($message->getEmbeddedFiles() as $file) {
-            $file->path() === null
-                ? $email->embed((string) $file->content(), $file->name(), $file->contentType())
-                : $email->embedFromPath($file->path(), $file->name(), $file->contentType());
+        foreach ($message->getEmbeddings() as $file) {
+            $email->addPart(
+                $this->createDataPartFromFile($file)->asInline()
+            );
         }
 
         return $email;
     }
 
     /**
-     * Converts address instances to their string representations.
-     *
-     * @param Address[] $addresses
-     *
-     * @return array<string, string>|string
+     * @see Email::attach()
+     * @see Email::attachFromPath()
+     * @see Email::embed()
+     * @see Email::embedFromPath()
      */
-    private function convertAddressesToStrings(array $addresses): array|string
+    private function createDataPartFromFile(File $file): DataPart
     {
-        $strings = [];
-
-        foreach ($addresses as $address) {
-            $strings[$address->getAddress()] = $address->getName();
-        }
-
-        return empty($strings) ? '' : $strings;
+        $body = $file->path() === null
+            ? $file->content() ?? ''
+            : new SymfonyFile($file->path(), $file->name());
+        return (new DataPart($body, $file->name(), $file->contentType()))
+            ->setContentId($file->id());
     }
 
     /**

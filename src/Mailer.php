@@ -23,6 +23,8 @@ use function sprintf;
  * Mailer implements a mailer based on Symfony Mailer.
  *
  * @see https://github.com/symfony/mailer
+ *
+ * @api
  */
 final class Mailer extends BaseMailer
 {
