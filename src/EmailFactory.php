@@ -91,7 +91,7 @@ final class EmailFactory
     /**
      * Converts string representations of address to their instances.
      *
-     * @param array<int|string, string>|string $strings
+     * @param string[]|string $strings
      *
      * @return Address[]
      */
