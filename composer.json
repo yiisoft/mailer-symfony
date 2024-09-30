@@ -33,9 +33,10 @@
         "psr/event-dispatcher": "^1.0",
         "symfony/mailer": "^5.3|^6.0|^7.0",
         "symfony/mime": "^5.4|^6.2|^7.0",
-        "yiisoft/mailer": "^5.0"
+        "yiisoft/mailer": "dev-master"
     },
     "require-dev": {
+        "ext-openssl": "*",
         "maglnet/composer-require-checker": "^4.2",
         "phpunit/phpunit": "^10.5",
         "rector/rector": "^1.2",

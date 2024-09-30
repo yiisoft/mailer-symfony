@@ -23,6 +23,8 @@ use function sprintf;
  * Mailer implements a mailer based on Symfony Mailer.
  *
  * @see https://github.com/symfony/mailer
+ *
+ * @api
  */
 final class Mailer extends BaseMailer
 {
@@ -31,6 +33,8 @@ final class Mailer extends BaseMailer
 
     private null|DkimSigner|SMimeSigner $signer = null;
     private array $dkimSignerOptions = [];
+
+    private EmailFactory $emailFactory;
 
     /**
      * @param MessageFactoryInterface $messageFactory
@@ -46,6 +50,7 @@ final class Mailer extends BaseMailer
     ) {
         parent::__construct($messageFactory, $messageBodyRenderer, $eventDispatcher);
         $this->symfonyMailer = new SymfonyMailer($transport);
+        $this->emailFactory = new EmailFactory();
     }
 
     /**
@@ -102,27 +107,19 @@ final class Mailer extends BaseMailer
      */
     protected function sendMessage(MessageInterface $message): void
     {
-        if (!($message instanceof Message)) {
-            throw new RuntimeException(sprintf(
-                'The message must be an instance of "%s". The "%s" instance is received.',
-                Message::class,
-                $message::class,
-            ));
-        }
-
-        $message = $message->getSymfonyEmail();
+        $email = $this->emailFactory->create($message);
 
         if ($this->encryptor !== null) {
-            $message = $this->encryptor->encrypt($message);
+            $email = $this->encryptor->encrypt($email);
         }
 
         if ($this->signer !== null) {
-            $message = $this->signer instanceof DkimSigner
-                ? $this->signer->sign($message, $this->dkimSignerOptions)
-                : $this->signer->sign($message)
+            $email = $this->signer instanceof DkimSigner
+                ? $this->signer->sign($email, $this->dkimSignerOptions)
+                : $this->signer->sign($email)
             ;
         }
 
-        $this->symfonyMailer->send($message);
+        $this->symfonyMailer->send($email);
     }
 }
