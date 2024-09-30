@@ -190,14 +190,14 @@ final class MailerTest extends TestCase
             ->has('DKIM-Signature'));
     }
 
-    public static function dataSendWithEmbedding(): iterable
+    public static function dataSendWithEmbeddings(): iterable
     {
         yield [File::fromContent(file_get_contents(__DIR__ . '/TestAsset/yii.png'), 'yii-logo.png', 'image/png')];
         yield [File::fromPath(__DIR__ . '/TestAsset/yii.png', 'yii-logo.png', 'image/png')];
     }
 
-    #[DataProvider('dataSendWithEmbedding')]
-    public function testSendWithEmbedding(File $file): void
+    #[DataProvider('dataSendWithEmbeddings')]
+    public function testSendWithEmbeddings(File $file): void
     {
         $html = '<img src="' . $file->cid() . '" alt="Yii logo">';
 
@@ -206,7 +206,7 @@ final class MailerTest extends TestCase
             ->withTo('to@example.com')
             ->withSubject('Test Subject')
             ->withHtmlBody($html)
-            ->withEmbedding($file);
+            ->withEmbeddings($file);
 
         /** @var Mailer $mailer */
         $mailer = $this->get(MailerInterface::class);
@@ -223,21 +223,21 @@ final class MailerTest extends TestCase
         $this->assertStringContainsStringIgnoringLineEndings('Content-ID: <' . $file->id() . '>', $sentMessage);
     }
 
-    public static function dataSendWithAttachment(): iterable
+    public static function dataSendWithAttachments(): iterable
     {
         yield [File::fromContent(file_get_contents(__DIR__ . '/TestAsset/yii.png'), 'yii-logo.png', 'image/png')];
         yield [File::fromPath(__DIR__ . '/TestAsset/yii.png', 'yii-logo.png', 'image/png')];
     }
 
-    #[DataProvider('dataSendWithAttachment')]
-    public function testSendWithAttachment(File $file): void
+    #[DataProvider('dataSendWithAttachments')]
+    public function testSendWithAttachments(File $file): void
     {
         $message = (new Message())
             ->withFrom('from@example.com')
             ->withTo('to@example.com')
             ->withSubject('Test Subject')
             ->withTextBody('test')
-            ->withAttachment($file);
+            ->withAttachments($file);
 
         /** @var Mailer $mailer */
         $mailer = $this->get(MailerInterface::class);

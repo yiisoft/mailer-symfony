@@ -33,7 +33,7 @@
         "psr/event-dispatcher": "^1.0",
         "symfony/mailer": "^5.3|^6.0|^7.0",
         "symfony/mime": "^5.4|^6.2|^7.0",
-        "yiisoft/mailer": "dev-big-refactoring as 5.1"
+        "yiisoft/mailer": "dev-master as 6.0"
     },
     "require-dev": {
         "ext-openssl": "*",
