@@ -28,7 +28,7 @@ final class EmailFactory
             ->cc(...$this->convertStringsToAddresses($message->getCc()))
             ->bcc(...$this->convertStringsToAddresses($message->getBcc()))
             ->subject($message->getSubject())
-            ->priority($message->getPriority())
+            ->priority($message->getPriority()->value)
             ->text($message->getTextBody(), $message->getCharset())
             ->html($message->getHtmlBody(), $message->getCharset());
 
