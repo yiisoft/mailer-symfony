@@ -7,6 +7,7 @@ namespace Yiisoft\Mailer\Symfony\Tests;
 use DateTimeImmutable;
 use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\Message;
+use Yiisoft\Mailer\Priority;
 use Yiisoft\Mailer\Symfony\EmailFactory;
 
 final class EmailFactoryTest extends \PHPUnit\Framework\TestCase
@@ -21,7 +22,7 @@ final class EmailFactoryTest extends \PHPUnit\Framework\TestCase
             bcc: 'kate@example.com',
             subject: 'Important letter',
             date: new DateTimeImmutable('2024-09-27 11:03:17'),
-            priority: 4,
+            priority: Priority::LOW,
             returnPath: 'bounce@example.com',
             sender: 'hosting@example.com',
             textBody: 'Hello =)',
