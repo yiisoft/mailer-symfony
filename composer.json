@@ -30,7 +30,6 @@
     ],
     "require": {
         "php": "^8.1",
-        "psr/event-dispatcher": "^1.0",
         "symfony/mailer": "^5.3|^6.0|^7.0",
         "symfony/mime": "^5.4|^6.2|^7.0",
         "yiisoft/mailer": "dev-master"
@@ -39,6 +38,7 @@
         "ext-openssl": "*",
         "maglnet/composer-require-checker": "^4.2",
         "phpunit/phpunit": "^10.5",
+        "psr/event-dispatcher": "^1.0",
         "rector/rector": "^1.2",
         "roave/infection-static-analysis-plugin": "^1.25",
         "spatie/phpunit-watcher": "^1.23",
@@ -49,6 +49,9 @@
         "yiisoft/psr-dummy-provider": "^1.0",
         "yiisoft/test-support": "^3.0",
         "yiisoft/view": "^10.0"
+    },
+    "suggest": {
+        "psr/event-dispatcher": "Use PSR Event Dispatcher implementation for process before/after send events"
     },
     "autoload": {
         "psr-4": {
