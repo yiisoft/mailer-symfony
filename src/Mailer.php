@@ -36,17 +36,11 @@ final class Mailer extends BaseMailer
 
     private EmailFactory $emailFactory;
 
-    /**
-     * @param MessageFactoryInterface $messageFactory
-     * @param MessageBodyRenderer $messageBodyRenderer
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param TransportInterface $transport
-     */
     public function __construct(
         MessageFactoryInterface $messageFactory,
         MessageBodyRenderer $messageBodyRenderer,
-        EventDispatcherInterface $eventDispatcher,
-        TransportInterface $transport
+        TransportInterface $transport,
+        ?EventDispatcherInterface $eventDispatcher = null,
     ) {
         parent::__construct($messageFactory, $messageBodyRenderer, $eventDispatcher);
         $this->symfonyMailer = new SymfonyMailer($transport);

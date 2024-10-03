@@ -87,7 +87,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $messageBodyRenderer = new MessageBodyRenderer($view, $messageBodyTemplate);
             $messageFactory = new MessageFactory(Message::class);
             $transport = new DummyTransport();
-            $mailer = new Mailer($messageFactory, $messageBodyRenderer, $eventDispatcher, $transport);
+            $mailer = new Mailer($messageFactory, $messageBodyRenderer, $transport, $eventDispatcher);
 
             $this->container = new SimpleContainer([
                 EventDispatcherInterface::class => $eventDispatcher,

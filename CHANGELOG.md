@@ -4,7 +4,9 @@
 
 - Chg #50: Raise minimal PHP version to `^8.1` (@vjik)
 - Bug #56: Use file ID for attachments and embedded files (@vjik)
-- Chg #49, #58: Adapt to Yii Mailer 6, remove `Message` class (@vjik) 
+- Chg #49, #58: Adapt to Yii Mailer 6, remove `Message` class (@vjik)
+- Enh #59: Make `psr/event-dispatcher` dependency optional (@vjik)
+- Chg #59: Change order of constructor parameters in `Mailer` (@vjik)
 
 ## 3.0.1 May 24, 2024
 
