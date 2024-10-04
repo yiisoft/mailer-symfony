@@ -48,7 +48,7 @@
         "yiisoft/files": "^2.0",
         "yiisoft/psr-dummy-provider": "^1.0",
         "yiisoft/test-support": "^3.0",
-        "yiisoft/view": "^10.0"
+        "yiisoft/view": "^11.0"
     },
     "suggest": {
         "psr/event-dispatcher": "Use PSR Event Dispatcher implementation for process before/after send events"
