@@ -83,7 +83,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $tempDir = $this->getTestFilePath();
             $eventDispatcher = new SimpleEventDispatcher();
             $view = new View($tempDir, $eventDispatcher);
-            $messageBodyTemplate = new MessageBodyTemplate($tempDir, '', '');
+            $messageBodyTemplate = new MessageBodyTemplate($tempDir);
             $messageBodyRenderer = new MessageBodyRenderer($view, $messageBodyTemplate);
             $messageFactory = new MessageFactory(Message::class);
             $transport = new DummyTransport();
