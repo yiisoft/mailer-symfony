@@ -10,11 +10,8 @@ use ReflectionClass;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Mailer\MailerInterface;
-use Yiisoft\Mailer\Message;
 use Yiisoft\Mailer\MessageBodyRenderer;
 use Yiisoft\Mailer\MessageBodyTemplate;
-use Yiisoft\Mailer\MessageFactory;
-use Yiisoft\Mailer\MessageFactoryInterface;
 use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\Mailer\Symfony\Tests\TestAsset\DummyTransport;
 use Yiisoft\Test\Support\Container\SimpleContainer;
@@ -85,16 +82,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             $view = new View($tempDir, $eventDispatcher);
             $messageBodyTemplate = new MessageBodyTemplate($tempDir);
             $messageBodyRenderer = new MessageBodyRenderer($view, $messageBodyTemplate);
-            $messageFactory = new MessageFactory(Message::class);
             $transport = new DummyTransport();
-            $mailer = new Mailer($messageFactory, $messageBodyRenderer, $transport, $eventDispatcher);
+            $mailer = new Mailer($messageBodyRenderer, $transport, eventDispatcher: $eventDispatcher);
 
             $this->container = new SimpleContainer([
                 EventDispatcherInterface::class => $eventDispatcher,
                 MailerInterface::class => $mailer,
                 MessageBodyRenderer::class => $messageBodyRenderer,
                 MessageBodyTemplate::class => $messageBodyTemplate,
-                MessageFactoryInterface::class => $messageFactory,
                 TransportInterface::class => $transport,
             ]);
         }

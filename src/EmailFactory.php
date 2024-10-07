@@ -21,24 +21,62 @@ final class EmailFactory
 {
     public function create(MessageInterface $message): Email
     {
-        $email = (new Email())
-            ->from(...$this->convertStringsToAddresses($message->getFrom()))
-            ->to(...$this->convertStringsToAddresses($message->getTo()))
-            ->replyTo(...$this->convertStringsToAddresses($message->getReplyTo()))
-            ->cc(...$this->convertStringsToAddresses($message->getCc()))
-            ->bcc(...$this->convertStringsToAddresses($message->getBcc()))
-            ->subject($message->getSubject())
-            ->priority($message->getPriority()->value)
-            ->text($message->getTextBody(), $message->getCharset())
-            ->html($message->getHtmlBody(), $message->getCharset());
+        $email = new Email();
+
+        $from = $this->convertStringsToAddresses($message->getFrom());
+        if ($from !== null) {
+            $email = $email->from(...$from);
+        }
+
+        $to = $this->convertStringsToAddresses($message->getTo());
+        if ($to !== null) {
+            $email = $email->to(...$to);
+        }
+
+        $replyTo = $this->convertStringsToAddresses($message->getReplyTo());
+        if ($replyTo !== null) {
+            $email = $email->replyTo(...$replyTo);
+        }
+
+        $cc = $this->convertStringsToAddresses($message->getCc());
+        if ($cc !== null) {
+            $email = $email->cc(...$cc);
+        }
+
+        $bcc = $this->convertStringsToAddresses($message->getBcc());
+        if ($bcc !== null) {
+            $email = $email->bcc(...$bcc);
+        }
+
+        $subject = $message->getSubject();
+        if ($subject !== null) {
+            $email = $email->subject($subject);
+        }
+
+        $priority = $message->getPriority();
+        if ($priority !== null) {
+            $email = $email->priority($priority->value);
+        }
+
+        $charset = $message->getCharset();
+
+        $textBody = $message->getTextBody();
+        if ($textBody !== null) {
+            $email = $email->text($textBody, $charset ?? 'utf-8');
+        }
+
+        $htmlBody = $message->getHtmlBody();
+        if ($htmlBody !== null) {
+            $email = $email->html($htmlBody, $charset ?? 'utf-8');
+        }
 
         $returnPath = $message->getReturnPath();
-        if ($returnPath !== '') {
+        if ($returnPath !== null) {
             $email->returnPath($returnPath);
         }
 
         $sender = $message->getSender();
-        if ($sender !== '') {
+        if ($sender !== null) {
             $email->sender($sender);
         }
 
@@ -48,7 +86,7 @@ final class EmailFactory
         }
 
         $emailHeaders = $email->getHeaders();
-        foreach ($message->getHeaders() as $name => $values) {
+        foreach ($message->getHeaders() ?? [] as $name => $values) {
             foreach ($values as $value) {
                 match ($name) {
                     'Date' => $emailHeaders->addDateHeader($name, new DateTimeImmutable($value)),
@@ -58,13 +96,13 @@ final class EmailFactory
             }
         }
 
-        foreach ($message->getAttachments() as $file) {
+        foreach ($message->getAttachments() ?? [] as $file) {
             $email->addPart(
                 $this->createDataPartFromFile($file)
             );
         }
 
-        foreach ($message->getEmbeddings() as $file) {
+        foreach ($message->getEmbeddings() ?? [] as $file) {
             $email->addPart(
                 $this->createDataPartFromFile($file)->asInline()
             );
@@ -91,12 +129,16 @@ final class EmailFactory
     /**
      * Converts string representations of address to their instances.
      *
-     * @param string|string[] $strings
+     * @param string|string[]|null $strings
      *
-     * @return Address[]
+     * @return Address[]|null
      */
-    private function convertStringsToAddresses(array|string $strings): array
+    private function convertStringsToAddresses(array|string|null $strings): array|null
     {
+        if ($strings === null) {
+            return null;
+        }
+
         if (is_string($strings)) {
             return [new Address($strings)];
         }
