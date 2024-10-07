@@ -41,7 +41,6 @@ use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\Mailer\Symfony\Message;
 
 /**
- * @var \Psr\EventDispatcher\EventDispatcherInterface $dispatcher
  * @var \Symfony\Component\Mailer\Transport\TransportInterface $transport
  * @var \Yiisoft\View\View $view
  */
@@ -49,9 +48,7 @@ use Yiisoft\Mailer\Symfony\Message;
 $template = new MessageBodyTemplate('/path/to/directory/of/view-files');
 
 $mailer = new Mailer(
-    new MessageFactory(Message::class),
     new MessageBodyRenderer($view, $template),
-    $dispatcher,
     $transport,
 );
 ```
