@@ -11,11 +11,8 @@ use Yiisoft\Definitions\Reference;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
-use Yiisoft\Mailer\Message;
 use Yiisoft\Mailer\MessageBodyRenderer;
 use Yiisoft\Mailer\MessageBodyTemplate;
-use Yiisoft\Mailer\MessageFactory;
-use Yiisoft\Mailer\MessageFactoryInterface;
 use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\View\View;
 
@@ -29,13 +26,6 @@ return [
             DynamicReference::to(static fn (Aliases $aliases) => new MessageBodyTemplate(
                 $aliases->get($params['yiisoft/mailer']['messageBodyTemplate']['viewPath']),
             )),
-        ],
-    ],
-
-    MessageFactoryInterface::class => [
-        'class' => MessageFactory::class,
-        '__construct()' => [
-            Message::class,
         ],
     ],
 

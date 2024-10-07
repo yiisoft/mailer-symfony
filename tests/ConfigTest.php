@@ -13,8 +13,6 @@ use Yiisoft\Di\ContainerConfig;
 use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
 use Yiisoft\Mailer\MessageBodyRenderer;
-use Yiisoft\Mailer\MessageFactory;
-use Yiisoft\Mailer\MessageFactoryInterface;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
 use Yiisoft\View\View;
 
@@ -25,13 +23,11 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
         $container = $this->createContainer();
 
         $messageBodyRenderer = $container->get(MessageBodyRenderer::class);
-        $messageFactory = $container->get(MessageFactoryInterface::class);
         $transport = $container->get(TransportInterface::class);
         $fileMailer = $container->get(FileMailer::class);
         $mailer = $container->get(MailerInterface::class);
 
         $this->assertInstanceOf(MessageBodyRenderer::class, $messageBodyRenderer);
-        $this->assertInstanceOf(MessageFactory::class, $messageFactory);
         $this->assertInstanceOf(EsmtpTransport::class, $transport);
         $this->assertInstanceOf(FileMailer::class, $fileMailer);
         $this->assertInstanceOf(FileMailer::class, $mailer);
