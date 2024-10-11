@@ -12,9 +12,9 @@ use Yiisoft\Di\Container;
 use Yiisoft\Di\ContainerConfig;
 use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
-use Yiisoft\Mailer\MessageBodyRenderer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
-use Yiisoft\View\View;
+
+use function dirname;
 
 final class ConfigTest extends \PHPUnit\Framework\TestCase
 {
@@ -22,12 +22,10 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
     {
         $container = $this->createContainer();
 
-        $messageBodyRenderer = $container->get(MessageBodyRenderer::class);
         $transport = $container->get(TransportInterface::class);
         $fileMailer = $container->get(FileMailer::class);
         $mailer = $container->get(MailerInterface::class);
 
-        $this->assertInstanceOf(MessageBodyRenderer::class, $messageBodyRenderer);
         $this->assertInstanceOf(EsmtpTransport::class, $transport);
         $this->assertInstanceOf(FileMailer::class, $fileMailer);
         $this->assertInstanceOf(FileMailer::class, $mailer);
@@ -40,7 +38,6 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
                 $this->getDiConfig($params)
                 +
                 [
-                    View::class => ['__construct()' => [__DIR__]],
                     EventDispatcherInterface::class => new SimpleEventDispatcher(),
                     Aliases::class => [
                         '__construct()' => [

@@ -12,8 +12,7 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Crypto\DkimSigner;
 use Symfony\Component\Mime\Crypto\SMimeEncrypter;
 use Symfony\Component\Mime\Crypto\SMimeSigner;
-use Yiisoft\Mailer\Mailer as BaseMailer;
-use Yiisoft\Mailer\MessageBodyRenderer;
+use Yiisoft\Mailer\BaseMailer;
 use Yiisoft\Mailer\MessageInterface;
 use Yiisoft\Mailer\MessageSettings;
 
@@ -37,12 +36,11 @@ final class Mailer extends BaseMailer
     private EmailFactory $emailFactory;
 
     public function __construct(
-        MessageBodyRenderer $messageBodyRenderer,
         TransportInterface $transport,
         ?MessageSettings $messageSettings = null,
         ?EventDispatcherInterface $eventDispatcher = null,
     ) {
-        parent::__construct($messageBodyRenderer, $messageSettings, $eventDispatcher);
+        parent::__construct($messageSettings, $eventDispatcher);
         $this->symfonyMailer = new SymfonyMailer($transport);
         $this->emailFactory = new EmailFactory();
     }

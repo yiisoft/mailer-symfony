@@ -10,13 +10,10 @@ use ReflectionClass;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Yiisoft\Files\FileHelper;
 use Yiisoft\Mailer\MailerInterface;
-use Yiisoft\Mailer\MessageBodyRenderer;
-use Yiisoft\Mailer\MessageBodyTemplate;
 use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\Mailer\Symfony\Tests\TestAsset\DummyTransport;
 use Yiisoft\Test\Support\Container\SimpleContainer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
-use Yiisoft\View\View;
 
 use function basename;
 use function str_replace;
@@ -77,19 +74,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     private function container(): ContainerInterface
     {
         if ($this->container === null) {
-            $tempDir = $this->getTestFilePath();
             $eventDispatcher = new SimpleEventDispatcher();
-            $view = new View($tempDir, $eventDispatcher);
-            $messageBodyTemplate = new MessageBodyTemplate($tempDir);
-            $messageBodyRenderer = new MessageBodyRenderer($view, $messageBodyTemplate);
             $transport = new DummyTransport();
-            $mailer = new Mailer($messageBodyRenderer, $transport, eventDispatcher: $eventDispatcher);
+            $mailer = new Mailer($transport, eventDispatcher: $eventDispatcher);
 
             $this->container = new SimpleContainer([
                 EventDispatcherInterface::class => $eventDispatcher,
                 MailerInterface::class => $mailer,
-                MessageBodyRenderer::class => $messageBodyRenderer,
-                MessageBodyTemplate::class => $messageBodyTemplate,
                 TransportInterface::class => $transport,
             ]);
         }
