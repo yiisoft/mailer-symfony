@@ -7,28 +7,14 @@ use Symfony\Component\Mailer\Transport\SendmailTransport;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Yiisoft\Aliases\Aliases;
-use Yiisoft\Definitions\Reference;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
-use Yiisoft\Mailer\MessageBodyRenderer;
-use Yiisoft\Mailer\MessageBodyTemplate;
 use Yiisoft\Mailer\Symfony\Mailer;
-use Yiisoft\View\View;
 
 /** @var array $params */
 
 return [
-    MessageBodyRenderer::class => [
-        'class' => MessageBodyRenderer::class,
-        '__construct()' => [
-            Reference::to(View::class),
-            DynamicReference::to(static fn (Aliases $aliases) => new MessageBodyTemplate(
-                $aliases->get($params['yiisoft/mailer']['messageBodyTemplate']['viewPath']),
-            )),
-        ],
-    ],
-
     TransportInterface::class => $params['yiisoft/mailer']['useSendmail']
         ? SendmailTransport::class
         : static function (EsmtpTransportFactory $esmtpTransportFactory) use ($params): TransportInterface {

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 return [
     'yiisoft/mailer' => [
-        'messageBodyTemplate' => [
-            'viewPath' => '@resources/mail',
-        ],
         'fileMailer' => [
             'fileMailerStorage' => '@runtime/mail',
         ],
