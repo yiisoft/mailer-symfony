@@ -3,14 +3,8 @@
 declare(strict_types=1);
 
 return [
-    'yiisoft/mailer' => [
-        'fileMailer' => [
-            'fileMailerStorage' => '@runtime/mail',
-        ],
+    'yiisoft/mailer-symfony' => [
         'useSendmail' => false,
-        'writeToFiles' => true,
-    ],
-    'symfony/mailer' => [
         'esmtpTransport' => [
             'scheme' => 'smtps', // "smtps": using TLS, "smtp": without using TLS.
             'host' => 'smtp.example.com',

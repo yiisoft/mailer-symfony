@@ -10,8 +10,8 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Di\Container;
 use Yiisoft\Di\ContainerConfig;
-use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
+use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
 
 use function dirname;
@@ -23,12 +23,10 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
         $container = $this->createContainer();
 
         $transport = $container->get(TransportInterface::class);
-        $fileMailer = $container->get(FileMailer::class);
         $mailer = $container->get(MailerInterface::class);
 
         $this->assertInstanceOf(EsmtpTransport::class, $transport);
-        $this->assertInstanceOf(FileMailer::class, $fileMailer);
-        $this->assertInstanceOf(FileMailer::class, $mailer);
+        $this->assertInstanceOf(Mailer::class, $mailer);
     }
 
     private function createContainer(?array $params = null): Container
