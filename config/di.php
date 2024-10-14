@@ -6,36 +6,24 @@ use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\Transport\SendmailTransport;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory;
 use Symfony\Component\Mailer\Transport\TransportInterface;
-use Yiisoft\Aliases\Aliases;
-use Yiisoft\Definitions\DynamicReference;
-use Yiisoft\Mailer\FileMailer;
 use Yiisoft\Mailer\MailerInterface;
 use Yiisoft\Mailer\Symfony\Mailer;
 
 /** @var array $params */
 
 return [
-    TransportInterface::class => $params['yiisoft/mailer']['useSendmail']
+    TransportInterface::class => $params['yiisoft/mailer-symfony']['useSendmail']
         ? SendmailTransport::class
-        : static function (EsmtpTransportFactory $esmtpTransportFactory) use ($params): TransportInterface {
-            return $esmtpTransportFactory->create(new Dsn(
-                $params['symfony/mailer']['esmtpTransport']['scheme'],
-                $params['symfony/mailer']['esmtpTransport']['host'],
-                $params['symfony/mailer']['esmtpTransport']['username'],
-                $params['symfony/mailer']['esmtpTransport']['password'],
-                $params['symfony/mailer']['esmtpTransport']['port'],
-                $params['symfony/mailer']['esmtpTransport']['options'],
-            ));
-        },
+        : static fn(EsmtpTransportFactory $esmtpTransportFactory): TransportInterface => $esmtpTransportFactory->create(
+            new Dsn(
+                $params['yiisoft/mailer-symfony']['esmtpTransport']['scheme'],
+                $params['yiisoft/mailer-symfony']['esmtpTransport']['host'],
+                $params['yiisoft/mailer-symfony']['esmtpTransport']['username'],
+                $params['yiisoft/mailer-symfony']['esmtpTransport']['password'],
+                $params['yiisoft/mailer-symfony']['esmtpTransport']['port'],
+                $params['yiisoft/mailer-symfony']['esmtpTransport']['options'],
+            )
+        ),
 
-    FileMailer::class => [
-        'class' => FileMailer::class,
-        '__construct()' => [
-            'path' => DynamicReference::to(fn (Aliases $aliases) => $aliases->get(
-                $params['yiisoft/mailer']['fileMailer']['fileMailerStorage'],
-            )),
-        ],
-    ],
-
-    MailerInterface::class => $params['yiisoft/mailer']['writeToFiles'] ? FileMailer::class : Mailer::class,
+    MailerInterface::class => Mailer::class,
 ];

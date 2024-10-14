@@ -8,6 +8,8 @@
   constructor, remove `MessageBodyRenderer` usage (@vjik)
 - Enh #59: Make `psr/event-dispatcher` dependency optional (@vjik)
 - Chg #59: Change order of constructor parameters in `Mailer` (@vjik)
+- Chg #48: Change package configuration params prefix to `yiisoft/mailer-symfony` (@vjik)
+- Chg #64: Remove `FileMailer` configuration and `writeToFiles` parameter from package configuration (@vjik)
 
 ## 3.0.1 May 24, 2024
 
