@@ -18,7 +18,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="Yii Mailer Library - Symfony Mailer Extension tests">
+        <testsuite name="Yii Mailer - Symfony Mailer Extension tests">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
