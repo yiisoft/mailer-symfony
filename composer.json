@@ -1,7 +1,7 @@
 {
     "name": "yiisoft/mailer-symfony",
     "type": "library",
-    "description": "Yii Mailer Library - Symfony Mailer Extension",
+    "description": "Adapter for `yiisoft/mailer` relying on `symfony/mailer`",
     "keywords": [
         "yii",
         "mail",

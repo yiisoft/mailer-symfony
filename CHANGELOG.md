@@ -1,4 +1,4 @@
-# Yii Mailer Library - Symfony Mailer Extension Change Log
+# Yii Mailer - Symfony Mailer Extension Change Log
 
 ## 4.0.0 under development
 
