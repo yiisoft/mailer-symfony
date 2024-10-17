@@ -39,6 +39,6 @@ return [
             'headers' => null,
             'overwriteHeaders' => null,
             'convertHtmlToText' => true,
-        ]
+        ],
     ],
 ];

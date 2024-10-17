@@ -59,7 +59,7 @@ return [
                 $params['yiisoft/mailer-symfony']['messageSettings']['convertHtmlToText']
                     ? new HtmlToTextBodyConverter()
                     : null,
-            )
+            ),
         ],
     ],
 ];
