@@ -32,7 +32,7 @@
         "php": "^8.1",
         "symfony/mailer": "^5.3|^6.0|^7.0",
         "symfony/mime": "^5.4|^6.2|^7.0",
-        "yiisoft/mailer": "dev-html2text"
+        "yiisoft/mailer": "dev-master"
     },
     "require-dev": {
         "ext-openssl": "*",
