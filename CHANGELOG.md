@@ -4,8 +4,8 @@
 
 - Chg #50: Raise minimal PHP version to `^8.1` (@vjik)
 - Bug #56: Use file ID for attachments and embedded files (@vjik)
-- Chg #49, #58, #62, #63: Adapt to Yii Mailer 6: remove `Message` class, add `$messageSettings` parameter to `Mailer`
-  constructor, remove `MessageBodyRenderer` usage (@vjik)
+- Chg #49, #58, #62, #63, #66: Adapt to Yii Mailer 6: remove `Message` class, add `$messageSettings` parameter
+  to `Mailer` constructor, remove `MessageBodyRenderer` usage (@vjik)
 - Enh #59: Make `psr/event-dispatcher` dependency optional (@vjik)
 - Chg #59: Change order of constructor parameters in `Mailer` (@vjik)
 - Chg #48: Change package configuration params prefix to `yiisoft/mailer-symfony` (@vjik)
