@@ -1,5 +1,9 @@
 # Yii Mailer - Symfony Mailer Extension Change Log
 
+## 4.0.1 under development
+
+- no changes in this release.
+
 ## 4.0.0 October 18, 2024
 
 - Chg #48: Change package configuration params prefix to `yiisoft/mailer-symfony` (@vjik)
