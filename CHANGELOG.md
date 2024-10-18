@@ -1,15 +1,15 @@
 # Yii Mailer - Symfony Mailer Extension Change Log
 
-## 4.0.0 under development
+## 4.0.0 October 18, 2024
 
-- Chg #50: Raise minimal PHP version to `^8.1` (@vjik)
-- Bug #56: Use file ID for attachments and embedded files (@vjik)
+- Chg #48: Change package configuration params prefix to `yiisoft/mailer-symfony` (@vjik)
 - Chg #49, #58, #62, #63, #66: Adapt to Yii Mailer 6: remove `Message` class, add `$messageSettings` parameter
   to `Mailer` constructor, remove `MessageBodyRenderer` usage (@vjik)
-- Enh #59: Make `psr/event-dispatcher` dependency optional (@vjik)
+- Chg #50: Raise minimal PHP version to `^8.1` (@vjik)
 - Chg #59: Change order of constructor parameters in `Mailer` (@vjik)
-- Chg #48: Change package configuration params prefix to `yiisoft/mailer-symfony` (@vjik)
 - Chg #64: Remove `FileMailer` configuration and `writeToFiles` parameter from package configuration (@vjik)
+- Enh #59: Make `psr/event-dispatcher` dependency optional (@vjik)
+- Bug #56: Use file ID for attachments and embedded files (@vjik)
 
 ## 3.0.1 May 24, 2024
 
