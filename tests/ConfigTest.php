@@ -19,10 +19,11 @@ use Yiisoft\Mailer\Priority;
 use Yiisoft\Mailer\Symfony\Mailer;
 use Yiisoft\Mailer\Symfony\Tests\TestAsset\DummyTransport;
 use Yiisoft\Test\Support\EventDispatcher\SimpleEventDispatcher;
+use PHPUnit\Framework\TestCase;
 
 use function dirname;
 
-final class ConfigTest extends \PHPUnit\Framework\TestCase
+final class ConfigTest extends TestCase
 {
     public function testBase(): void
     {
@@ -128,7 +129,7 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
             new Message(
                 subject: 'Notice',
                 htmlBody: '<h1>Hello!</h1>',
-            )
+            ),
         );
 
         $messages = $transport->getSentMessages();
@@ -142,8 +143,7 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
     private function createContainer(?array $params = null, ?TransportInterface $transport = null): Container
     {
         $config = $this->getDiConfig($params)
-            +
-            [
+            + [
                 EventDispatcherInterface::class => new SimpleEventDispatcher(),
                 Aliases::class => [
                     '__construct()' => [
@@ -160,7 +160,7 @@ final class ConfigTest extends \PHPUnit\Framework\TestCase
         }
 
         return new Container(
-            ContainerConfig::create()->withDefinitions($config)
+            ContainerConfig::create()->withDefinitions($config),
         );
     }
 

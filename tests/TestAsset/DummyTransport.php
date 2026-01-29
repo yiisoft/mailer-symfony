@@ -19,6 +19,11 @@ final class DummyTransport implements TransportInterface, Stringable
      */
     private array $sentMessages = [];
 
+    public function __toString(): string
+    {
+        return self::class;
+    }
+
     /**
      * @return RawMessage[]
      */
@@ -35,10 +40,5 @@ final class DummyTransport implements TransportInterface, Stringable
 
         $this->sentMessages[] = $message;
         return null;
-    }
-
-    public function __toString(): string
-    {
-        return self::class;
     }
 }

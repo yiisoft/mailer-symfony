@@ -19,6 +19,8 @@ use function basename;
 use function str_replace;
 use function sys_get_temp_dir;
 
+use const DIRECTORY_SEPARATOR;
+
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     private ?ContainerInterface $container = null;

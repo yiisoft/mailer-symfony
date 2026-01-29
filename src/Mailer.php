@@ -30,7 +30,7 @@ final class Mailer extends BaseMailer
     private SymfonyMailer $symfonyMailer;
     private ?SMimeEncrypter $encryptor = null;
 
-    private null|DkimSigner|SMimeSigner $signer = null;
+    private DkimSigner|SMimeSigner|null $signer = null;
     private array $dkimSignerOptions = [];
 
     private EmailFactory $emailFactory;

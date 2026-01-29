@@ -9,8 +9,9 @@ use Yiisoft\Mailer\File;
 use Yiisoft\Mailer\Message;
 use Yiisoft\Mailer\Priority;
 use Yiisoft\Mailer\Symfony\EmailFactory;
+use PHPUnit\Framework\TestCase;
 
-final class EmailFactoryTest extends \PHPUnit\Framework\TestCase
+final class EmailFactoryTest extends TestCase
 {
     public function testBase(): void
     {
