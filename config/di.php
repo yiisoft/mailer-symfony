@@ -24,7 +24,7 @@ return [
                 $params['yiisoft/mailer-symfony']['esmtpTransport']['password'],
                 $params['yiisoft/mailer-symfony']['esmtpTransport']['port'],
                 $params['yiisoft/mailer-symfony']['esmtpTransport']['options'],
-            )
+            ),
         ),
 
     MailerInterface::class => Mailer::class,

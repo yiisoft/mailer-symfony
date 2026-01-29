@@ -98,13 +98,13 @@ final class EmailFactory
 
         foreach ($message->getAttachments() ?? [] as $file) {
             $email->addPart(
-                $this->createDataPartFromFile($file)
+                $this->createDataPartFromFile($file),
             );
         }
 
         foreach ($message->getEmbeddings() ?? [] as $file) {
             $email->addPart(
-                $this->createDataPartFromFile($file)->asInline()
+                $this->createDataPartFromFile($file)->asInline(),
             );
         }
 
@@ -133,7 +133,7 @@ final class EmailFactory
      *
      * @return Address[]|null
      */
-    private function convertStringsToAddresses(array|string|null $strings): array|null
+    private function convertStringsToAddresses(array|string|null $strings): ?array
     {
         if ($strings === null) {
             return null;

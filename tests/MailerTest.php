@@ -70,7 +70,7 @@ final class MailerTest extends TestCase
             (new Message())
                 ->withFrom('from@example.com')
                 ->withTo('to@example.com')
-                ->withTextBody('Test Body')
+                ->withTextBody('Test Body'),
         );
     }
 
@@ -218,7 +218,7 @@ final class MailerTest extends TestCase
 
         $this->assertStringContainsStringIgnoringLineEndings(
             "Content-Disposition: inline; name=\"{$file->id()}\";\r\n filename=yii-logo.png",
-            $sentMessage
+            $sentMessage,
         );
         $this->assertStringContainsStringIgnoringLineEndings('Content-ID: <' . $file->id() . '>', $sentMessage);
     }
@@ -249,7 +249,7 @@ final class MailerTest extends TestCase
 
         $this->assertStringContainsStringIgnoringLineEndings(
             'Content-Disposition: attachment; name=yii-logo.png; filename=yii-logo.png',
-            $sentMessage
+            $sentMessage,
         );
         $this->assertStringContainsStringIgnoringLineEndings('Content-ID: <' . $file->id() . '>', $sentMessage);
     }
