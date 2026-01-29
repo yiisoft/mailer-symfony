@@ -66,9 +66,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         $property = $class->getProperty($propertyName);
-        $property->setAccessible(true);
         $result = $property->getValue($object);
-        $property->setAccessible(false);
 
         return $result;
     }
