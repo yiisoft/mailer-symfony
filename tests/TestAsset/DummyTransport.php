@@ -32,7 +32,7 @@ final class DummyTransport implements TransportInterface, Stringable
         return $this->sentMessages;
     }
 
-    public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
+    public function send(RawMessage $message, ?Envelope $envelope = null): ?SentMessage
     {
         if ($message instanceof Email && empty($message->getSubject())) {
             throw new TransportException('Subject is required.');
