@@ -3,7 +3,8 @@
 ## 4.0.1 under development
 
 - Chg #69, #72: Change PHP constraint in `composer.json` to `8.1 - 8.5` (@vjik)
-- Enh #74: Add support for `symfony/mailer` of version `^8.0` and `symfony/mime` of version `^8.0` (@vjik)
+- Chg #74, #75: Change supported version of `symfony/mailer` to `^6.0 || ^7.0 || ^8.0` (@vjik)
+- Chg #74, #75: Change supported version of `symfony/mime` to `^6.3 || ^7.0 || ^8.0` (@vjik)
 
 ## 4.0.0 October 18, 2024
 

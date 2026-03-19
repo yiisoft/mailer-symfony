@@ -22,6 +22,9 @@ on:
 
 name: build
 
+permissions:
+  contents: read
+
 jobs:
   phpunit:
     uses: yiisoft/actions/.github/workflows/phpunit.yml@master
@@ -32,3 +35,14 @@ jobs:
         ['ubuntu-latest', 'windows-latest']
       php: >-
         ['8.1', '8.2', '8.3', '8.4', '8.5']
+
+  phpunit-lowest:
+    uses: yiisoft/actions/.github/workflows/phpunit.yml@master
+    secrets:
+      codecovToken: ${{ secrets.CODECOV_TOKEN }}
+    with:
+      prefer-lowest: true
+      os: >-
+        ['ubuntu-latest']
+      php: >-
+        ['8.1']
