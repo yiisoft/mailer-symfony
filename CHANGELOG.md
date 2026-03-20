@@ -1,5 +1,9 @@
 # Yii Mailer - Symfony Mailer Extension Change Log
 
+## 4.0.2 under development
+
+- no changes in this release.
+
 ## 4.0.1 March 20, 2026
 
 - Chg #69, #72: Change PHP constraint in `composer.json` to `8.1 - 8.5` (@vjik)
