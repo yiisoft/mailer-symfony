@@ -216,8 +216,10 @@ final class MailerTest extends TestCase
         $transport = $this->get(TransportInterface::class);
         $sentMessage = $transport->getSentMessages()[0]->toString();
 
-        $this->assertStringContainsStringIgnoringLineEndings('Content-Disposition: inline;', $sentMessage);
-        $this->assertStringContainsStringIgnoringLineEndings('filename=yii-logo.png', $sentMessage);
+        $this->assertStringContainsStringIgnoringLineEndings(
+            "Content-Disposition: inline; name=\"{$file->id()}\";\r\n filename=yii-logo.png",
+            $sentMessage,
+        );
         $this->assertStringContainsStringIgnoringLineEndings('Content-ID: <' . $file->id() . '>', $sentMessage);
     }
 
