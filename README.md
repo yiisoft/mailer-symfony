@@ -74,7 +74,7 @@ For use in the [Yii framework](https://www.yiiframework.com/), see the configura
 
 ## Documentation
 
-- [Yii guide to mailing](https://github.com/yiisoft/docs/blob/master/guide/en/tutorial/mailing.md)
+- [Yii guide to mailing](https://yiisoft.github.io/docs/guide/tutorial/mailing)
 - [Symfony Mailer documentation](https://symfony.com/doc/current/mailer.html)
 - [Internals](docs/internals.md)
 
